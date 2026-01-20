@@ -15,11 +15,7 @@
             --shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
@@ -29,7 +25,7 @@
         }
 
         .campaign-banner {
-            background-color: #FF4757; /* 目立つ赤色 */
+            background-color: #FF4757;
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -48,18 +44,14 @@
             justify-content: space-between;
             align-items: center;
             position: sticky;
-            top: 40px; /* バナーの高さ分ずらす */
+            top: 40px;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
     
         @media (max-width: 768px) {
-            header {
-                top: 0; /* スマホではバナーを固定しない */
-            }
-            .campaign-banner {
-                font-size: 14px;
-            }
+            header { top: 0; }
+            .campaign-banner { font-size: 14px; }
         }
 
         .logo {
@@ -72,26 +64,11 @@
             color: var(--primary-color);
         }
 
-        .logo img {
-            height: 40px;
-        }
+        .logo img { height: 40px; }
 
-        nav {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: var(--dark-color); font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary-color); }
 
         .hero {
             padding: 80px 5%;
@@ -99,21 +76,9 @@
             background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%);
         }
 
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: var(--dark-color);
-        }
-
-        .hero h1 span {
-            color: var(--primary-color);
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 40px;
-        }
+        .hero h1 { font-size: 42px; margin-bottom: 20px; color: var(--dark-color); }
+        .hero h1 span { color: var(--primary-color); }
+        .hero p { font-size: 18px; color: #666; margin-bottom: 40px; }
 
         .stats-container {
             display: flex;
@@ -132,31 +97,12 @@
             text-align: center;
         }
 
-        .stat-card .number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 5px;
-        }
+        .stat-card .number { font-size: 36px; font-weight: 700; color: var(--primary-color); display: block; margin-bottom: 5px; }
+        .stat-card .label { font-size: 14px; color: #888; }
 
-        .stat-card .label {
-            font-size: 14px;
-            color: #888;
-        }
+        .search-section { max-width: 800px; margin: 0 auto; position: relative; }
 
-        .search-section {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* タブデザイン */
-        .search-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+        .search-tabs { display: flex; justify-content: center; margin-bottom: 20px; }
 
         .tab-button {
             padding: 15px 30px;
@@ -186,35 +132,10 @@
             margin-top: -1px;
         }
 
-        /* マンション検索ボックス */
-        .search-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            position: relative;
-        }
-        .search-input {
-            flex: 1;
-            border: 1px solid #ddd;
-            padding: 15px;
-            font-size: 16px;
-            outline: none;
-            border-radius: 8px;
-        }
-        .search-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            white-space: nowrap;
-        }
-        .search-btn:hover {
-            opacity: 0.9;
-        }
+        .search-box { display: flex; gap: 10px; margin-bottom: 10px; position: relative; }
+        .search-input { flex: 1; border: 1px solid #ddd; padding: 15px; font-size: 16px; outline: none; border-radius: 8px; }
+        .search-btn { background: var(--primary-color); color: var(--white); border: none; padding: 15px 30px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: opacity 0.3s; white-space: nowrap; }
+        .search-btn:hover { opacity: 0.9; }
 
         .suggestions {
             position: absolute;
@@ -241,48 +162,14 @@
             transition: background-color 0.2s;
         }
 
-        .suggestion-item:hover {
-            background-color: #f9f9f9;
-        }
+        .suggestion-item:hover { background-color: #f9f9f9; }
+        .mansion-name { font-weight: 500; }
+        .buyer-count { font-size: 12px; color: var(--primary-color); background: #FFF0F0; padding: 2px 8px; border-radius: 4px; }
 
-        .mansion-name {
-            font-weight: 500;
-        }
-
-        .buyer-count {
-            font-size: 12px;
-            color: var(--primary-color);
-            background: #FFF0F0;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        /* フォームグループ */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--dark-color);
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: var(--white);
-            transition: border-color 0.3s;
-        }
-
-        select:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--dark-color); }
+        select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; background-color: var(--white); transition: border-color 0.3s; }
+        select:focus { border-color: var(--primary-color); outline: none; }
 
         button.search-btn-fullwidth {
             width: 100%;
@@ -297,18 +184,9 @@
             box-shadow: var(--shadow);
             transition: background-color 0.3s;
         }
+        button.search-btn-fullwidth:hover { background-color: #e65555; }
 
-        button.search-btn-fullwidth:hover {
-            background-color: #e65555;
-        }
-
-        /* エリア/駅検索の切り替えボタン */
-        .search-method-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            justify-content: center;
-        }
+        .search-method-buttons { display: flex; gap: 15px; margin-bottom: 30px; justify-content: center; }
 
         .method-btn {
             flex: 1;
@@ -324,57 +202,27 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .method-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+        .method-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .method-btn.active { background: var(--primary-color); color: var(--white); box-shadow: 0 4px 15px rgba(255,107,107,0.4); }
 
-        .method-btn.active {
-            background: var(--primary-color);
+        footer {
+            background: var(--dark-color);
             color: var(--white);
-            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+            padding: 40px 5%;
+            margin-top: 80px;
+            text-align: center;
         }
+        footer p { color: #ccc; margin-bottom: 10px; }
+        footer .copyright { font-size: 12px; color: #888; }
 
-        /* アクセシビリティ用非表示テキスト */
-        .sr-only {
-            border: 0 !important;
-            clip: rect(1px,1px,1px,1px) !important;
-            -webkit-clip-path: inset(50%) !important;
-            clip-path: inset(50%) !important;
-            height: 1px !important;
-            margin: -1px !important;
-            overflow: hidden !important;
-            padding: 0 !important;
-            position: absolute !important;
-            width: 1px !important;
-            white-space: nowrap !important;
-        }
-
-        /* レスポンシブ対応 */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            .stats-container {
-                gap: 15px;
-            }
-            .stat-card {
-                min-width: 100%;
-            }
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav {
-                font-size: 14px;
-            }
-            .tab-button {
-                padding: 10px 15px;
-                font-size: 16px;
-            }
-            .search-box {
-                flex-direction: column;
-            }
+            .hero h1 { font-size: 32px; }
+            .stats-container { gap: 15px; }
+            .stat-card { min-width: 100%; }
+            header { flex-direction: column; gap: 15px; }
+            nav { font-size: 14px; }
+            .tab-button { padding: 10px 15px; font-size: 16px; }
+            .search-box { flex-direction: column; }
         }
     </style>
 </head>
@@ -392,216 +240,110 @@
             <a href="#">査定依頼</a>
             <a href="#">お問い合わせ</a>
         </nav>
-
     </header>
 
-    <section class="hero" role="banner" aria-label="メインビジュアル">
+    <section class="hero" role="banner">
         <h1 id="heroTitle">URICO - マンション売却<span>マッチング</span></h1>
         <p>25,463組の購入希望者データベースから最適な買主を見つけます</p>
     </section>
 
-    <section class="stats-container" aria-label="サービス実績">
-        <div class="stat-card" role="region" aria-labelledby="statBuyers-label">
+    <section class="stats-container">
+        <div class="stat-card">
             <span class="number" id="statBuyers">25,463</span>
-            <span class="label" id="statBuyers-label">購入希望者数</span>
+            <span class="label">購入希望者数</span>
         </div>
-        <div class="stat-card" role="region" aria-labelledby="statProperties-label">
+        <div class="stat-card">
             <span class="number" id="statProperties">6,368</span>
-            <span class="label" id="statProperties-label">対応物件数</span>
+            <span class="label">対応物件数</span>
         </div>
-        <div class="stat-card" role="region" aria-labelledby="statSuccessRate-label">
+        <div class="stat-card">
             <span class="number" id="statSuccessRate">72.4%</span>
-            <span class="label" id="statSuccessRate-label">成約率</span>
+            <span class="label">成約率</span>
         </div>
     </section>
 
-    <section class="search-section" aria-label="物件検索">
-        <div class="search-tabs" role="tablist" aria-label="物件の種類による検索切替">
-            <button 
-                class="tab-button active" 
-                role="tab" 
-                aria-selected="true" 
-                aria-controls="tab-mansion" 
-                id="tab-mansion-btn" 
-                tabindex="0"
-                type="button"
-                >マンション</button>
-            <button 
-                class="tab-button" 
-                role="tab" 
-                aria-selected="false" 
-                aria-controls="tab-house" 
-                id="tab-house-btn" 
-                tabindex="-1"
-                type="button"
-                >戸建</button>
-            <button 
-                class="tab-button" 
-                role="tab" 
-                aria-selected="false" 
-                aria-controls="tab-land" 
-                id="tab-land-btn" 
-                tabindex="-1"
-                type="button"
-                >土地</button>
+    <section class="search-section">
+        <div class="search-tabs" role="tablist">
+            <button class="tab-button active" role="tab" aria-selected="true" id="tab-mansion-btn" type="button">マンション</button>
+            <button class="tab-button" role="tab" aria-selected="false" id="tab-house-btn" type="button">戸建</button>
+            <button class="tab-button" role="tab" aria-selected="false" id="tab-land-btn" type="button">土地</button>
         </div>
 
         <!-- マンションタブ -->
-        <div class="tab-content" id="tab-mansion" role="tabpanel" aria-labelledby="tab-mansion-btn">
-            <div class="search-box" style="position: relative;">
-                <input 
-                    type="text" 
-                    id="searchInputMansion" 
-                    class="search-input" 
-                    placeholder="マンション名を入力してください（例：D'クラディア）" 
-                    autocomplete="off"
-                    aria-autocomplete="list"
-                    aria-controls="suggestionsMansion"
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                >
+        <div class="tab-content" id="tab-mansion">
+            <div class="search-box">
+                <input type="text" id="searchInputMansion" class="search-input" placeholder="マンション名を入力してください（例：D'クラディア）" autocomplete="off">
                 <button id="searchButtonMansion" class="search-btn" type="button">検索する</button>
-                <div id="suggestionsMansion" class="suggestions" role="listbox" aria-label="マンション名の候補"></div>
+                <div id="suggestionsMansion" class="suggestions"></div>
             </div>
         </div>
 
-                <!-- 戸建タブ -->
-        <form id="tab-house" class="tab-content" role="tabpanel" aria-labelledby="tab-house-btn" style="display:none;">
-            <!-- 検索方法切り替えボタン -->
+        <!-- 戸建タブ -->
+        <form id="tab-house" class="tab-content" style="display:none;">
             <div class="search-method-buttons">
                 <button type="button" class="method-btn" id="house-method-station">駅から探す</button>
                 <button type="button" class="method-btn active" id="house-method-area">エリアから探す</button>
             </div>
             
-            <!-- 駅検索フォーム -->
             <div id="house-station-search" style="display:none;">
                 <div class="form-group">
                     <label for="house-railway">路線会社名</label>
-                    <select id="house-railway" name="house-railway">
-                        <option value="">選択してください</option>
-                        <option value="JR西日本">JR西日本</option>
-                        <option value="Osaka Metro（大阪メトロ）">Osaka Metro（大阪メトロ）</option>
-                        <option value="阪急電鉄">阪急電鉄</option>
-                        <option value="阪神電鉄">阪神電鉄</option>
-                        <option value="京阪電鉄">京阪電鉄</option>
-                        <option value="南海電鉄">南海電鉄</option>
-                        <option value="近畿日本鉄道（近鉄）">近畿日本鉄道（近鉄）</option>
-                        <option value="大阪モノレール">大阪モノレール</option>
-                        <option value="北大阪急行電鉄">北大阪急行電鉄</option>
-                        <option value="能勢電鉄">能勢電鉄</option>
-                        <option value="信楽高原鉄道">信楽高原鉄道</option>
-                        <option value="近江鉄道">近江鉄道</option>
-                        <option value="叡山電鉄">叡山電鉄</option>
-                        <option value="京福電鉄（嵐電）">京福電鉄（嵐電）</option>
-                        <option value="京都市営地下鉄">京都市営地下鉄</option>
-                        <option value="京都丹後鉄道">京都丹後鉄道</option>
-                        <option value="神戸電鉄">神戸電鉄</option>
-                        <option value="神戸市営地下鉄">神戸市営地下鉄</option>
-                        <option value="山陽電鉄">山陽電鉄</option>
-                        <option value="北条鉄道">北条鉄道</option>
-                        <option value="神戸新交通">神戸新交通</option>
-                        <option value="智頭急行">智頭急行</option>
-                    </select>
+                    <select id="house-railway"><option value="">選択してください</option></select>
                 </div>
                 <div class="form-group">
                     <label for="house-line">沿線名</label>
-                    <select id="house-line" name="house-line" disabled>
-                        <option value="">先に路線会社名を選択してください</option>
-                    </select>
+                    <select id="house-line" disabled><option value="">先に路線会社名を選択してください</option></select>
                 </div>
                 <div class="form-group">
                     <label for="house-station">駅名</label>
-                    <select id="house-station" name="house-station" disabled>
-                        <option value="">先に沿線名を選択してください</option>
-                    </select>
+                    <select id="house-station" disabled><option value="">先に沿線名を選択してください</option></select>
                 </div>
             </div>
             
-            <!-- エリア検索フォーム -->
             <div id="house-area-search">
                 <div class="form-group">
                     <label for="house-prefecture">都道府県</label>
-                    <select id="house-prefecture" name="house-prefecture">
-                        <option value="">選択してください</option>
-                    </select>
+                    <select id="house-prefecture"><option value="">選択してください</option></select>
                 </div>
                 <div class="form-group">
                     <label for="house-city">市区町村</label>
-                    <select id="house-city" name="house-city" disabled>
-                        <option value="">先に都道府県を選択してください</option>
-                    </select>
+                    <select id="house-city" disabled><option value="">先に都道府県を選択してください</option></select>
                 </div>
             </div>
             
             <button type="submit" class="search-btn-fullwidth">戸建を検索</button>
         </form>
 
-        
         <!-- 土地タブ -->
-        <form id="tab-land" class="tab-content" role="tabpanel" aria-labelledby="tab-land-btn" hidden
-            <!-- 検索方法切り替えボタン -->
+        <form id="tab-land" class="tab-content" style="display:none;">
             <div class="search-method-buttons">
                 <button type="button" class="method-btn" id="land-method-station">駅から探す</button>
                 <button type="button" class="method-btn active" id="land-method-area">エリアから探す</button>
             </div>
             
-            <!-- 駅検索フォーム -->
             <div id="land-station-search" style="display:none;">
                 <div class="form-group">
                     <label for="land-railway">路線会社名</label>
-                    <select id="land-railway" name="land-railway">
-                        <option value="">選択してください</option>
-                        <option value="JR西日本">JR西日本</option>
-                        <option value="Osaka Metro（大阪メトロ）">Osaka Metro（大阪メトロ）</option>
-                        <option value="阪急電鉄">阪急電鉄</option>
-                        <option value="阪神電鉄">阪神電鉄</option>
-                        <option value="京阪電鉄">京阪電鉄</option>
-                        <option value="南海電鉄">南海電鉄</option>
-                        <option value="近畿日本鉄道（近鉄）">近畿日本鉄道（近鉄）</option>
-                        <option value="大阪モノレール">大阪モノレール</option>
-                        <option value="北大阪急行電鉄">北大阪急行電鉄</option>
-                        <option value="能勢電鉄">能勢電鉄</option>
-                        <option value="信楽高原鉄道">信楽高原鉄道</option>
-                        <option value="近江鉄道">近江鉄道</option>
-                        <option value="叡山電鉄">叡山電鉄</option>
-                        <option value="京福電鉄（嵐電）">京福電鉄（嵐電）</option>
-                        <option value="京都市営地下鉄">京都市営地下鉄</option>
-                        <option value="京都丹後鉄道">京都丹後鉄道</option>
-                        <option value="神戸電鉄">神戸電鉄</option>
-                        <option value="神戸市営地下鉄">神戸市営地下鉄</option>
-                        <option value="山陽電鉄">山陽電鉄</option>
-                        <option value="北条鉄道">北条鉄道</option>
-                        <option value="神戸新交通">神戸新交通</option>
-                        <option value="智頭急行">智頭急行</option>
-                    </select>
+                    <select id="land-railway"><option value="">選択してください</option></select>
                 </div>
                 <div class="form-group">
                     <label for="land-line">沿線名</label>
-                    <select id="land-line" name="land-line" disabled>
-                        <option value="">先に路線会社名を選択してください</option>
-                    </select>
+                    <select id="land-line" disabled><option value="">先に路線会社名を選択してください</option></select>
                 </div>
                 <div class="form-group">
                     <label for="land-station">駅名</label>
-                    <select id="land-station" name="land-station" disabled>
-                        <option value="">先に沿線名を選択してください</option>
-                    </select>
+                    <select id="land-station" disabled><option value="">先に沿線名を選択してください</option></select>
                 </div>
             </div>
             
-            <!-- エリア検索フォーム -->
             <div id="land-area-search">
                 <div class="form-group">
                     <label for="land-prefecture">都道府県</label>
-                    <select id="land-prefecture" name="land-prefecture">
-                        <option value="">選択してください</option>
-                    </select>
+                    <select id="land-prefecture"><option value="">選択してください</option></select>
                 </div>
                 <div class="form-group">
                     <label for="land-city">市区町村</label>
-                    <select id="land-city" name="land-city" disabled>
-                        <option value="">先に都道府県を選択してください</option>
-                    </select>
+                    <select id="land-city" disabled><option value="">先に都道府県を選択してください</option></select>
                 </div>
             </div>
             
@@ -609,1147 +351,55 @@
         </form>
     </section>
 
+    <footer>
+        <p>関西最大級の不動産売却マッチングサービス</p>
+        <p class="copyright">&copy; 2026 URICO All Rights Reserved.</p>
+    </footer>
 
 <script>
-// 路線データ
-const railwayData = {
-    "JR西日本": {
-        "JR神戸線（東海道本線・山陽本線）": [
-            "尼崎",
-            "立花",
-            "甲子園口",
-            "西宮",
-            "さくら夙川",
-            "芦屋",
-            "甲南山手",
-            "摂津本山",
-            "住吉",
-            "六甲道",
-            "摩耶",
-            "灘",
-            "三ノ宮",
-            "元町",
-            "神戸",
-            "兵庫",
-            "新長田",
-            "鷹取",
-            "須磨海浜公園",
-            "須磨",
-            "塩屋",
-            "垂水",
-            "舞子",
-            "朝霧",
-            "明石",
-            "西明石",
-            "大久保",
-            "魚住",
-            "土山",
-            "東加古川",
-            "加古川",
-            "宝殿",
-            "曽根",
-            "ひめじ別所",
-            "御着",
-            "東姫路",
-            "姫路"
-        ],
-        "JR宝塚線（福知山線）": [
-            "尼崎",
-            "塚口",
-            "猪名寺",
-            "伊丹",
-            "北伊丹",
-            "川西池田",
-            "中山寺",
-            "宝塚",
-            "生瀬",
-            "西宮名塩",
-            "武田尾",
-            "道場",
-            "三田",
-            "新三田",
-            "広野",
-            "相野",
-            "藍本",
-            "草野",
-            "古市",
-            "南矢代",
-            "篠山口",
-            "丹波大山",
-            "下滝",
-            "谷川",
-            "柏原",
-            "石生",
-            "黒井",
-            "市島",
-            "丹波竹田",
-            "福知山"
-        ],
-        "JR山陽本線": [
-            "姫路",
-            "英賀保",
-            "はりま勝原",
-            "網干",
-            "竜野",
-            "相生",
-            "有年",
-            "上郡"
-        ],
-        "JR赤穂線": [
-            "相生",
-            "西相生",
-            "坂越",
-            "播州赤穂",
-            "天和",
-            "備前福河"
-        ],
-        "JR加古川線": [
-            "加古川",
-            "日岡",
-            "神野",
-            "厄神",
-            "市場",
-            "小野町",
-            "粟生",
-            "河合西",
-            "青野ケ原",
-            "社町",
-            "滝野",
-            "滝",
-            "西脇市",
-            "新西脇",
-            "比延",
-            "日本へそ公園",
-            "黒田庄",
-            "本黒田",
-            "船町口",
-            "久下村",
-            "谷川"
-        ],
-        "JR姫新線": [
-            "姫路",
-            "播磨高岡",
-            "余部",
-            "太市",
-            "本竜野",
-            "東觜崎",
-            "播磨新宮",
-            "千本",
-            "西栗栖",
-            "三日月",
-            "播磨徳久",
-            "佐用",
-            "上月"
-        ],
-        "JR播但線": [
-            "姫路",
-            "京口",
-            "野里",
-            "砥堀",
-            "仁豊野",
-            "香呂",
-            "溝口",
-            "福崎",
-            "甘地",
-            "鶴居",
-            "新野",
-            "寺前",
-            "長谷",
-            "生野",
-            "新井",
-            "青倉",
-            "竹田",
-            "和田山"
-        ],
-        "JR山陰本線": [
-            "和田山",
-            "養父",
-            "八鹿",
-            "江原",
-            "国府",
-            "豊岡",
-            "玄武洞",
-            "城崎温泉",
-            "竹野",
-            "佐津",
-            "柴山",
-            "香住",
-            "鎧",
-            "餘部",
-            "久谷",
-            "浜坂",
-            "諸寄",
-            "居組"
-        ]
-    },
-    "Osaka Metro（大阪メトロ）": {
-        "御堂筋線": [
-            "江坂",
-            "東三国",
-            "新大阪",
-            "西中島南方",
-            "中津",
-            "梅田",
-            "淀屋橋",
-            "本町",
-            "心斎橋",
-            "なんば",
-            "大国町",
-            "動物園前",
-            "天王寺",
-            "昭和町",
-            "西田辺",
-            "長居",
-            "あびこ",
-            "北花田",
-            "新金岡",
-            "なかもず"
-        ],
-        "谷町線": [
-            "大日",
-            "守口",
-            "太子橋今市",
-            "千林大宮",
-            "関目高殿",
-            "野江内代",
-            "都島",
-            "天神橋筋六丁目",
-            "中崎町",
-            "東梅田",
-            "南森町",
-            "天満橋",
-            "谷町四丁目",
-            "谷町六丁目",
-            "谷町九丁目",
-            "四天王寺前夕陽ケ丘",
-            "天王寺",
-            "阿倍野",
-            "文の里",
-            "田辺",
-            "駒川中野",
-            "平野",
-            "喜連瓜破",
-            "出戸",
-            "長原",
-            "八尾南"
-        ],
-        "四つ橋線": [
-            "西梅田",
-            "肥後橋",
-            "本町",
-            "四ツ橋",
-            "なんば",
-            "大国町",
-            "花園町",
-            "岸里",
-            "玉出",
-            "北加賀屋",
-            "住之江公園"
-        ],
-        "中央線": [
-            "コスモスクエア",
-            "大阪港",
-            "朝潮橋",
-            "弁天町",
-            "九条",
-            "阿波座",
-            "本町",
-            "堺筋本町",
-            "谷町四丁目",
-            "森ノ宮",
-            "緑橋",
-            "深江橋",
-            "高井田",
-            "長田"
-        ],
-        "千日前線": [
-            "野田阪神",
-            "玉川",
-            "阿波座",
-            "西長堀",
-            "桜川",
-            "なんば",
-            "日本橋",
-            "谷町九丁目",
-            "鶴橋",
-            "今里",
-            "新深江",
-            "小路",
-            "北巽",
-            "南巽"
-        ],
-        "堺筋線": [
-            "天神橋筋六丁目",
-            "扇町",
-            "南森町",
-            "北浜",
-            "堺筋本町",
-            "長堀橋",
-            "日本橋",
-            "恵美須町",
-            "動物園前",
-            "天下茶屋"
-        ],
-        "長堀鶴見緑地線": [
-            "大正",
-            "ドーム前千代崎",
-            "西長堀",
-            "西大橋",
-            "心斎橋",
-            "長堀橋",
-            "松屋町",
-            "谷町六丁目",
-            "玉造",
-            "森ノ宮",
-            "大阪ビジネスパーク",
-            "京橋",
-            "蒲生四丁目",
-            "今福鶴見",
-            "横堤",
-            "鶴見緑地",
-            "門真南"
-        ],
-        "今里筋線": [
-            "井高野",
-            "瑞光四丁目",
-            "だいどう豊里",
-            "太子橋今市",
-            "清水",
-            "新森古市",
-            "関目成育",
-            "蒲生四丁目",
-            "鴫野",
-            "緑橋",
-            "今里"
-        ],
-        "ニュートラム（南港ポートタウン線）": [
-            "コスモスクエア",
-            "トレードセンター前",
-            "中ふ頭",
-            "ポートタウン西",
-            "ポートタウン東",
-            "フェリーターミナル",
-            "南港東",
-            "南港口",
-            "平林",
-            "住之江公園"
-        ]
-    },
-    "阪急電鉄": {
-        "阪急神戸本線": [
-            "神戸三宮",
-            "春日野道",
-            "王子公園",
-            "六甲",
-            "御影",
-            "岡本",
-            "芦屋川",
-            "夙川",
-            "西宮北口",
-            "武庫之荘",
-            "塚口",
-            "園田",
-            "神崎川",
-            "十三"
-        ],
-        "阪急今津線": [
-            "今津",
-            "阪神国道",
-            "西宮北口",
-            "門戸厄神",
-            "甲東園",
-            "仁川",
-            "小林",
-            "逆瀬川",
-            "宝塚南口",
-            "宝塚"
-        ],
-        "阪急伊丹線": [
-            "伊丹",
-            "新伊丹",
-            "稲野",
-            "塚口"
-        ],
-        "阪急甲陽線": [],
-        "甲陽園、苦楽園口、夙川": []
-    },
-    "阪神電鉄": {
-        "阪神本線": [
-            "元町",
-            "神戸三宮",
-            "春日野道",
-            "岩屋",
-            "西灘",
-            "大石",
-            "新在家",
-            "石屋川",
-            "御影",
-            "住吉",
-            "魚崎",
-            "青木",
-            "深江",
-            "芦屋",
-            "打出",
-            "香櫨園",
-            "西宮",
-            "今津",
-            "久寿川",
-            "甲子園",
-            "鳴尾・武庫川女子大前",
-            "武庫川",
-            "尼崎センタープール前",
-            "出屋敷",
-            "尼崎"
-        ],
-        "阪神なんば線": [],
-        "尼崎、大物": [],
-        "阪神武庫川線": [
-            "武庫川",
-            "東鳴尾",
-            "洲先",
-            "武庫川団地前"
-        ],
-        "神戸高速線（阪神）": [
-            "元町",
-            "西元町",
-            "高速神戸",
-            "新開地",
-            "大開",
-            "高速長田"
-        ]
-    },
-    "京阪電鉄": {
-        "京阪本線・鴨東線": [
-            "出町柳",
-            "神宮丸太町",
-            "三条",
-            "祇園四条",
-            "清水五条",
-            "七条",
-            "東福寺",
-            "鳥羽街道",
-            "伏見稲荷",
-            "龍谷大前深草",
-            "藤森",
-            "墨染",
-            "丹波橋",
-            "伏見桃山",
-            "中書島",
-            "淀",
-            "石清水八幡宮",
-            "橋本",
-            "樟葉"
-        ],
-        "京阪宇治線": [
-            "中書島",
-            "観月橋",
-            "桃山南口",
-            "六地蔵",
-            "木幡",
-            "黄檗",
-            "三室戸",
-            "宇治"
-        ],
-        "京阪京津線": [
-            "御陵",
-            "京阪山科",
-            "四宮",
-            "追分",
-            "大谷",
-            "上栄町",
-            "びわ湖浜大津"
-        ]
-    },
-    "南海電鉄": {
-        "南海本線": [
-            "なんば",
-            "新今宮",
-            "天下茶屋",
-            "岸里玉出",
-            "粉浜",
-            "住吉大社",
-            "住ノ江",
-            "七道",
-            "堺",
-            "湊",
-            "石津川",
-            "諏訪ノ森",
-            "浜寺公園",
-            "羽衣",
-            "高石",
-            "北助松",
-            "松ノ浜",
-            "泉大津",
-            "忠岡",
-            "春木",
-            "和泉大宮",
-            "岸和田",
-            "蛸地蔵",
-            "貝塚",
-            "二色浜",
-            "鶴原",
-            "井原里",
-            "泉佐野",
-            "羽倉崎",
-            "吉見ノ里",
-            "岡田浦",
-            "樽井",
-            "尾崎",
-            "鳥取ノ荘",
-            "箱作",
-            "淡輪",
-            "みさき公園",
-            "孝子",
-            "和歌山大学前",
-            "紀ノ川",
-            "和歌山市"
-        ],
-        "南海高野線": [
-            "なんば",
-            "今宮戎",
-            "新今宮",
-            "萩ノ茶屋",
-            "天下茶屋",
-            "岸里玉出",
-            "帝塚山",
-            "住吉東",
-            "沢ノ町",
-            "我孫子前",
-            "浅香山",
-            "堺東",
-            "三国ケ丘",
-            "百舌鳥八幡",
-            "中百舌鳥",
-            "白鷺",
-            "初芝",
-            "萩原天神",
-            "北野田",
-            "狭山",
-            "大阪狭山市",
-            "金剛",
-            "滝谷",
-            "千代田",
-            "河内長野",
-            "三日市町",
-            "美加の台",
-            "千早口",
-            "天見",
-            "紀見峠",
-            "林間田園都市",
-            "御幸辻",
-            "橋本",
-            "紀伊清水",
-            "学文路",
-            "九度山",
-            "高野下",
-            "下古沢",
-            "上古沢",
-            "紀伊細川",
-            "紀伊神谷",
-            "極楽橋",
-            "高野山"
-        ],
-        "南海空港線": [],
-        "泉佐野、りんくうタウン、関西空港": [],
-        "泉北高速鉄道線": [
-            "中百舌鳥",
-            "深井",
-            "泉ケ丘",
-            "栂・美木多",
-            "光明池",
-            "和泉中央"
-        ]
-    },
-    "近畿日本鉄道（近鉄）": {
-        "近鉄京都線": [
-            "京都",
-            "東寺",
-            "十条",
-            "上鳥羽口",
-            "竹田",
-            "伏見",
-            "近鉄丹波橋",
-            "桃山御陵前",
-            "向島",
-            "小倉",
-            "伊勢田",
-            "大久保",
-            "久津川",
-            "寺田",
-            "富野荘",
-            "新田辺",
-            "興戸",
-            "三山木",
-            "近鉄宮津",
-            "狛田",
-            "山田川",
-            "木津川台",
-            "高の原",
-            "大和西大寺"
-        ]
-    },
-    "大阪モノレール": {
-        "大阪モノレール本線": [
-            "大阪空港",
-            "蛍池",
-            "柴原阪大前",
-            "少路",
-            "千里中央",
-            "山田",
-            "万博記念公園",
-            "宇野辺",
-            "南茨木",
-            "沢良宜",
-            "摂津",
-            "南摂津",
-            "大日",
-            "門真市"
-        ],
-        "大阪モノレール彩都線": [
-            "万博記念公園",
-            "公園東口",
-            "阪大病院前",
-            "豊川",
-            "彩都西"
-        ]
-    },
-    "北大阪急行電鉄": {
-        "北大阪急行南北線": [
-            "千里中央",
-            "桃山台",
-            "緑地公園",
-            "江坂",
-            "箕面萱野"
-        ]
-    },
-    "能勢電鉄": {
-        "能勢電鉄妙見線": [
-            "川西能勢口",
-            "絹延橋",
-            "滝山",
-            "鶯の森",
-            "鴬野",
-            "畦野",
-            "山下",
-            "笹部",
-            "光風台",
-            "ときわ台",
-            "妙見口"
-        ],
-        "能勢電鉄日生線": [],
-        "山下、日生中央": [],
-        "市": [
-            "奈良市",
-            "大和高田市",
-            "大和郡山市",
-            "天理市",
-            "橿原市",
-            "桜井市",
-            "五條市",
-            "御所市",
-            "生駒市",
-            "香芝市",
-            "葛城市",
-            "宇陀市"
-        ],
-        "郡部（町・村 ※記載のとおり）": [
-            "山添村",
-            "平群町",
-            "三郷町",
-            "斑鳩町",
-            "安堵町",
-            "川西町",
-            "三宅町",
-            "田原本町",
-            "曽爾村",
-            "御杖村",
-            "高取町",
-            "明日香村",
-            "上牧町",
-            "王寺町",
-            "広陵町",
-            "河合町"
-        ],
-        "吉野郡": [
-            "吉野町",
-            "大淀町",
-            "下市町",
-            "黒滝村",
-            "天川村",
-            "野迫川村",
-            "十津川村",
-            "下北山村",
-            "上北山村",
-            "川上村",
-            "東吉野村"
-        ]
-    },
-    "信楽高原鉄道": {
-        "信楽高原鉄道線": [
-            "貴生川",
-            "紫香楽宮跡",
-            "雲井",
-            "勅旨",
-            "玉桂寺前",
-            "信楽"
-        ]
-    },
-    "近江鉄道": {
-        "近江鉄道本線（彦根～貴生川）": [
-            "彦根",
-            "ひこね芹川",
-            "彦根口",
-            "高宮",
-            "尼子",
-            "豊郷",
-            "愛知川",
-            "五箇荘",
-            "河辺の森",
-            "八日市",
-            "長谷野",
-            "大学前",
-            "京セラ前",
-            "桜川",
-            "朝日大塚",
-            "朝日野",
-            "日野",
-            "水口松尾",
-            "水口",
-            "水口石橋",
-            "水口城南",
-            "貴生川"
-        ],
-        "近江鉄道多賀線": [],
-        "高宮、スクリーン、多賀大社前": [],
-        "近江鉄道八日市線": [
-            "八日市",
-            "新八日市",
-            "太郎坊宮前",
-            "市辺",
-            "平田",
-            "武佐",
-            "近江八幡"
-        ],
-        "京都市（11区）": [
-            "北区",
-            "上京区",
-            "左京区",
-            "中京区",
-            "東山区",
-            "下京区",
-            "南区",
-            "右京区",
-            "伏見区",
-            "山科区",
-            "西京区"
-        ],
-        "市部": [
-            "福知山市",
-            "舞鶴市",
-            "綾部市",
-            "宇治市",
-            "宮津市",
-            "亀岡市",
-            "城陽市",
-            "向日市",
-            "長岡京市",
-            "八幡市",
-            "京田辺市",
-            "京丹後市",
-            "南丹市",
-            "木津川市"
-        ],
-        "乙訓郡：大山崎町": [],
-        "久世郡：久御山町": [],
-        "綴喜郡：井手町、宇治田原町": [
-            "相楽郡：笠置町",
-            "和束町",
-            "精華町",
-            "南山城村"
-        ],
-        "船井郡：京丹波町": [],
-        "与謝郡：伊根町、与謝野町": []
-    },
-    "叡山電鉄": {
-        "叡山電鉄叡山本線": [
-            "出町柳",
-            "元田中",
-            "茶山・京都芸術大学",
-            "一乗寺",
-            "修学院",
-            "宝ケ池",
-            "三宅八幡",
-            "八瀬比叡山口"
-        ],
-        "叡山電鉄鞍馬線": [
-            "宝ケ池",
-            "岩倉",
-            "木野",
-            "京都精華大前",
-            "二軒茶屋",
-            "市原",
-            "二ノ瀬",
-            "貴船口",
-            "鞍馬"
-        ]
-    },
-    "京福電鉄（嵐電）": {
-        "嵐電嵐山本線": [
-            "四条大宮",
-            "西院",
-            "西大路三条",
-            "山ノ内",
-            "嵐電天神川",
-            "蚕ノ社",
-            "太秦広隆寺",
-            "帷子ノ辻",
-            "有栖川",
-            "車折神社",
-            "鹿王院",
-            "嵐電嵯峨",
-            "嵐山"
-        ],
-        "嵐電北野線": [
-            "帷子ノ辻",
-            "撮影所前",
-            "常盤",
-            "鳴滝",
-            "宇多野",
-            "御室仁和寺",
-            "妙心寺",
-            "龍安寺",
-            "等持院・立命館大学衣笠キャンパス前",
-            "北野白梅町"
-        ]
-    },
-    "京都市営地下鉄": {
-        "烏丸線": [
-            "国際会館",
-            "松ヶ崎",
-            "北山",
-            "北大路",
-            "鞍馬口",
-            "今出川",
-            "丸太町",
-            "烏丸御池",
-            "四条",
-            "五条",
-            "京都",
-            "九条",
-            "十条",
-            "くいな橋",
-            "竹田"
-        ],
-        "東西線": [
-            "六地蔵",
-            "石田",
-            "醍醐",
-            "小野",
-            "椥辻",
-            "東野",
-            "山科",
-            "御陵",
-            "蹴上",
-            "東山",
-            "三条京阪",
-            "京都市役所前",
-            "烏丸御池",
-            "二条城前",
-            "二条",
-            "西大路御池",
-            "太秦天神川"
-        ]
-    },
-    "京都丹後鉄道": {
-        "宮福線": [
-            "福知山",
-            "福知山市民病院口",
-            "荒河かしの木台",
-            "牧",
-            "下天津",
-            "公庄",
-            "大江",
-            "大江高校前",
-            "二俣",
-            "大江山口内宮",
-            "辛皮",
-            "宮村",
-            "宮津"
-        ],
-        "宮舞線": [
-            "西舞鶴",
-            "四所",
-            "東雲",
-            "丹後神崎",
-            "丹後由良",
-            "栗田",
-            "宮津"
-        ],
-        "宮豊線": [
-            "宮津",
-            "天橋立",
-            "岩滝口",
-            "与謝野",
-            "京丹後大宮",
-            "峰山",
-            "網野",
-            "夕日ヶ浦木津温泉",
-            "小天橋",
-            "かぶと山",
-            "久美浜",
-            "豊岡"
-        ],
-        "神戸地域": [
-            "神戸市（東灘区",
-            "灘区",
-            "兵庫区",
-            "長田区",
-            "須磨区",
-            "垂水区",
-            "北区",
-            "中央区",
-            "西区）"
-        ],
-        "阪神南地域": [],
-        "尼崎市、西宮市、芦屋市": [],
-        "阪神北地域": [
-            "伊丹市",
-            "宝塚市",
-            "川西市",
-            "三田市",
-            "猪名川町"
-        ],
-        "東播磨地域": [
-            "明石市",
-            "加古川市",
-            "高砂市",
-            "稲美町",
-            "播磨町"
-        ],
-        "北播磨地域": [
-            "西脇市",
-            "三木市",
-            "小野市",
-            "加西市",
-            "加東市",
-            "多可町"
-        ],
-        "中播磨地域": [
-            "姫路市",
-            "市川町",
-            "福崎町",
-            "神河町"
-        ],
-        "西播磨地域": [
-            "相生市",
-            "たつの市",
-            "赤穂市",
-            "宍粟市",
-            "太子町",
-            "上郡町",
-            "佐用町"
-        ],
-        "但馬地域": [
-            "豊岡市",
-            "養父市",
-            "朝来市",
-            "香美町",
-            "新温泉町"
-        ],
-        "淡路地域": [],
-        "洲本市、南あわじ市、淡路市": []
-    },
-    "神戸電鉄": {
-        "神戸電鉄有馬線": [
-            "新開地",
-            "湊川",
-            "長田",
-            "丸山",
-            "鵯越",
-            "鈴蘭台",
-            "北鈴蘭台",
-            "山の街",
-            "箕谷",
-            "谷上",
-            "花山",
-            "大池",
-            "神鉄六甲",
-            "唐櫃台",
-            "有馬口",
-            "有馬温泉"
-        ],
-        "神戸電鉄三田線": [
-            "有馬口",
-            "五社",
-            "岡場",
-            "田尾寺",
-            "二郎",
-            "道場南口",
-            "神鉄道場",
-            "横山",
-            "三田本町",
-            "三田"
-        ],
-        "神戸電鉄粟生線": [
-            "鈴蘭台",
-            "鈴蘭台西口",
-            "西鈴蘭台",
-            "藍那",
-            "木津",
-            "木幡",
-            "栄",
-            "押部谷",
-            "緑が丘",
-            "広野ゴルフ場前",
-            "志染",
-            "恵比須",
-            "三木上の丸",
-            "三木",
-            "大村",
-            "樫山",
-            "市場",
-            "小野",
-            "葉多",
-            "粟生"
-        ],
-        "神戸電鉄公園都市線": [],
-        "横山、ウッディタウン中央": []
-    },
-    "神戸市営地下鉄": {
-        "西神・山手線": [
-            "新神戸",
-            "三宮",
-            "県庁前",
-            "大倉山",
-            "湊川公園",
-            "上沢",
-            "長田",
-            "新長田",
-            "板宿",
-            "妙法寺",
-            "名谷",
-            "総合運動公園",
-            "学園都市",
-            "伊川谷",
-            "西神南",
-            "西神中央"
-        ],
-        "海岸線": [
-            "三宮・花時計前",
-            "旧居留地・大丸前",
-            "みなと元町",
-            "ハーバーランド",
-            "中央市場前",
-            "和田岬",
-            "御崎公園",
-            "苅藻",
-            "駒ヶ林",
-            "新長田"
-        ],
-        "北神線": [],
-        "新神戸、谷上": []
-    },
-    "山陽電鉄": {
-        "山陽電鉄本線": [
-            "西代",
-            "板宿",
-            "東須磨",
-            "月見山",
-            "須磨寺",
-            "山陽須磨",
-            "須磨浦公園",
-            "山陽塩屋",
-            "滝の茶屋",
-            "東垂水",
-            "山陽垂水",
-            "霞ヶ丘",
-            "舞子公園",
-            "西舞子",
-            "大蔵谷",
-            "人丸前",
-            "山陽明石",
-            "西新町",
-            "林崎松江海岸",
-            "藤江",
-            "中八木",
-            "江井ヶ島",
-            "西江井ヶ島",
-            "山陽魚住",
-            "東二見",
-            "西二見",
-            "播磨町",
-            "別府",
-            "浜の宮",
-            "尾上の松",
-            "高砂",
-            "荒井",
-            "伊保",
-            "山陽曽根",
-            "大塩",
-            "的形",
-            "八家",
-            "白浜の宮",
-            "妻鹿",
-            "飾磨",
-            "亀山",
-            "手柄",
-            "山陽姫路"
-        ],
-        "山陽電鉄網干線": [
-            "飾磨",
-            "西飾磨",
-            "夢前川",
-            "広畑",
-            "山陽天満",
-            "平松",
-            "山陽網干"
-        ]
-    },
-    "北条鉄道": {
-        "北条鉄道線": [
-            "粟生",
-            "網引",
-            "田原",
-            "法華口",
-            "播磨下里",
-            "長",
-            "播磨横田",
-            "北条町"
-        ]
-    },
-    "神戸新交通": {
-        "ポートライナー": [
-            "三宮",
-            "貿易センター",
-            "ポートターミナル",
-            "中公園",
-            "みなとじま",
-            "市民広場",
-            "医療センター",
-            "計算科学センター",
-            "神戸空港"
-        ],
-        "六甲ライナー": [
-            "住吉",
-            "魚崎",
-            "南魚崎",
-            "アイランド北口",
-            "アイランドセンター",
-            "マリンパーク"
-        ]
-    },
-    "智頭急行": {
-        "智頭急行智頭線（兵庫県内）": [
-            "上郡",
-            "苔縄",
-            "久崎",
-            "佐用",
-            "平福",
-            "石井",
-            "宮本武蔵"
-        ]
-    }
+// グローバル変数
+let railwayData = {};
+let areaData = {};
+
+const statsData = {
+    mansion: { title: "マンション売却<span>マッチング</span>", buyers: "25,463", properties: "6,368", rate: "72.4%" },
+    house: { title: "戸建売却<span>マッチング</span>", buyers: "18,921", properties: "4,120", rate: "68.1%" },
+    land: { title: "土地売却<span>マッチング</span>", buyers: "12,509", properties: "2,890", rate: "65.5%" }
 };
+
+// 外部JSONファイルを読み込み
+async function loadData() {
+    try {
+        const [railwayRes, areaRes] = await Promise.all([
+            fetch('./railway_data.json'),
+            fetch('./area_data.json')
+        ]);
+        railwayData = await railwayRes.json();
+        areaData = await areaRes.json();
+        
+        // データ読み込み後に初期化
+        initializeRailwaySelects('house');
+        initializeRailwaySelects('land');
+        initializeAreaSelects('house');
+        initializeAreaSelects('land');
+    } catch (error) {
+        console.error('データの読み込みに失敗しました:', error);
+    }
+}
+
+// 路線会社のセレクトボックスを初期化
+function initializeRailwaySelects(prefix) {
+    const railwaySelect = document.getElementById(`${prefix}-railway`);
+    if (!railwaySelect) return;
+    
+    railwaySelect.innerHTML = '<option value="">選択してください</option>';
+    Object.keys(railwayData).forEach(company => {
+        const option = document.createElement('option');
+        option.value = company;
+        option.textContent = company;
+        railwaySelect.appendChild(option);
+    });
+}
 
 // 検索方法切り替え機能
 function setupSearchMethodToggle(prefix) {
@@ -1757,6 +407,8 @@ function setupSearchMethodToggle(prefix) {
     const areaBtn = document.getElementById(`${prefix}-method-area`);
     const stationSearch = document.getElementById(`${prefix}-station-search`);
     const areaSearch = document.getElementById(`${prefix}-area-search`);
+    
+    if (!stationBtn || !areaBtn) return;
     
     stationBtn.addEventListener('click', () => {
         stationBtn.classList.add('active');
@@ -1778,6 +430,8 @@ function setup3TierRailwaySelect(prefix) {
     const railwaySelect = document.getElementById(`${prefix}-railway`);
     const lineSelect = document.getElementById(`${prefix}-line`);
     const stationSelect = document.getElementById(`${prefix}-station`);
+    
+    if (!railwaySelect || !lineSelect || !stationSelect) return;
     
     railwaySelect.addEventListener('change', () => {
         const company = railwaySelect.value;
@@ -1817,25 +471,13 @@ function setup3TierRailwaySelect(prefix) {
     });
 }
 
-
-// エリアデータ
-const areaData = {
-    '大阪府': ['大阪市都島区', '大阪市福島区', '大阪市此花区', '大阪市西区', '大阪市港区', '大阪市大正区', '大阪市天王寺区', '大阪市浪速区', '大阪市西淀川区', '大阪市東淀川区', '大阪市東成区', '大阪市生野区', '大阪市旭区', '大阪市城東区', '大阪市阿倍野区', '大阪市住吉区', '大阪市東住吉区', '大阪市西成区', '大阪市淀川区', '大阪市鶴見区', '大阪市住之江区', '大阪市平野区', '大阪市北区', '大阪市中央区', '吹田市', '高槻市', '茨木市', '摂津市', '島本町', '豊中市', '池田市', '箕面市', '豊能町', '能勢町', '堺市', '泉大津市', '和泉市', '高石市', '忠岡町', '岸和田市', '貝塚市', '泉佐野市', '泉南市', '阪南市', '熊取町', '田尻町', '岬町', '富田林市', '河内長野市', '松原市', '羽曳野市', '藤井寺市', '大阪狭山市', '太子町', '河南町', '千早赤阪村', '八尾市', '柏原市', '東大阪市', '守口市', '枚方市', '寝屋川市', '大東市', '門真市', '四條畷市', '交野市'],
-    '奈良県': ['奈良市', '大和高田市', '大和郡山市', '天理市', '橿原市', '桜井市', '五條市', '御所市', '生駒市', '香芝市', '葛城市', '宇陀市', '山添村', '平群町', '三郷町', '斑鳩町', '安堵町', '川西町', '三宅町', '田原本町', '曽爾村', '御杖村', '高取町', '明日香村', '上牧町', '王寺町', '広陵町', '河合町', '吉野町', '大淀町', '下市町', '黒滝村', '天川村', '野迫川村', '十津川村', '下北山村', '上北山村', '川上村', '東吉野村'],
-    '滋賀県': ['大津市', '草津市', '守山市', '栗東市', '野洲市', '湖南市', '甲賀市', '近江八幡市', '東近江市', '日野町', '竜王町', '彦根市', '愛荘町', '豊郷町', '甲良町', '多賀町', '長浜市', '米原市', '高島市'],
-    '京都府': ['京都市北区', '京都市上京区', '京都市左京区', '京都市中京区', '京都市東山区', '京都市下京区', '京都市南区', '京都市右京区', '京都市伏見区', '京都市山科区', '京都市西京区', '福知山市', '舞鶴市', '綾部市', '宇治市', '宮津市', '亀岡市', '城陽市', '向日市', '長岡京市', '八幡市', '京田辺市', '京丹後市', '南丹市', '木津川市', '大山崎町', '久御山町', '井手町', '宇治田原町', '笠置町', '和束町', '精華町', '南山城村', '京丹波町', '伊根町', '与謝野町'],
-    '兵庫県': ['神戸市東灘区', '神戸市灘区', '神戸市兵庫区', '神戸市長田区', '神戸市須磨区', '神戸市垂水区', '神戸市北区', '神戸市中央区', '神戸市西区', '尼崎市', '西宮市', '芦屋市', '伊丹市', '宝塚市', '川西市', '三田市', '猪名川町', '明石市', '加古川市', '高砂市', '稲美町', '播磨町', '西脇市', '三木市', '小野市', '加西市', '加東市', '多可町', '姫路市', '市川町', '福崎町', '神河町', '相生市', 'たつの市', '赤穂市', '宍粟市', '太子町', '上郡町', '佐用町', '豊岡市', '養父市', '朝来市', '香美町', '新温泉町', '洲本市', '南あわじ市', '淡路市']
-};
-
-const statsData = {
-    mansion: { title: "マンション売却<span>マッチング</span>", buyers: "25,463", properties: "6,368", rate: "72.4%" },
-    house: { title: "戸建売却<span>マッチング</span>", buyers: "18,921", properties: "4,120", rate: "68.1%" },
-    land: { title: "土地売却<span>マッチング</span>", buyers: "12,509", properties: "2,890", rate: "65.5%" }
-};
-
+// エリアセレクト初期化
 function initializeAreaSelects(prefix) {
     const prefSelect = document.getElementById(`${prefix}-prefecture`);
     const citySelect = document.getElementById(`${prefix}-city`);
+    
+    if (!prefSelect || !citySelect) return;
+    
     prefSelect.innerHTML = '<option value="">選択してください</option>';
     Object.keys(areaData).forEach(pref => {
         const option = document.createElement('option');
@@ -1843,11 +485,13 @@ function initializeAreaSelects(prefix) {
         option.textContent = pref;
         prefSelect.appendChild(option);
     });
+    
     prefSelect.addEventListener('change', () => {
         const selectedPref = prefSelect.value;
         citySelect.innerHTML = '<option value="">先に都道府県を選択してください</option>';
         citySelect.disabled = true;
-        if(selectedPref && areaData[selectedPref]){
+        
+        if (selectedPref && areaData[selectedPref]) {
             citySelect.innerHTML = '<option value="">選択してください</option>';
             areaData[selectedPref].forEach(city => {
                 const option = document.createElement('option');
@@ -1860,6 +504,7 @@ function initializeAreaSelects(prefix) {
     });
 }
 
+// タブ切り替え
 function initializeTabSwitching() {
     const tabs = document.querySelectorAll('.search-tabs button');
     const contents = {
@@ -1867,44 +512,37 @@ function initializeTabSwitching() {
         house: document.getElementById('tab-house'),
         land: document.getElementById('tab-land'),
     };
-    const heroTitle = document.getElementById('heroTitle');
-    const statBuyers = document.getElementById('statBuyers');
-    const statProperties = document.getElementById('statProperties');
-    const statSuccessRate = document.getElementById('statSuccessRate');
+    
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            const selectedType = tab.id.replace('tab-', '').replace('-btn','');
+            const selectedType = tab.id.replace('tab-', '').replace('-btn', '');
+            
             tabs.forEach(t => {
                 const isSelected = (t === tab);
                 t.classList.toggle('active', isSelected);
                 t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-                t.setAttribute('tabindex', isSelected ? '0' : '-1');
             });
+            
             Object.entries(contents).forEach(([key, element]) => {
                 if (!element) return;
-                if (key === selectedType) {
-                    element.style.display = 'block';
-                    element.removeAttribute('hidden');
-                    element.setAttribute('aria-hidden', 'false');
-                } else {
-                    element.style.display = 'none';
-                    element.setAttribute('hidden', '');
-                    element.setAttribute('aria-hidden', 'true');
-                }
+                element.style.display = (key === selectedType) ? 'block' : 'none';
             });
+            
             updateStats(selectedType);
         });
     });
+    
     function updateStats(type) {
         const data = statsData[type];
-        heroTitle.innerHTML = `URICO - ${data.title}`;
-        statBuyers.textContent = data.buyers;
-        statProperties.textContent = data.properties;
-        statSuccessRate.textContent = data.rate;
+        if (!data) return;
+        document.getElementById('heroTitle').innerHTML = `URICO - ${data.title}`;
+        document.getElementById('statBuyers').textContent = data.buyers;
+        document.getElementById('statProperties').textContent = data.properties;
+        document.getElementById('statSuccessRate').textContent = data.rate;
     }
-    updateStats('mansion');
 }
 
+// マンション検索
 function initializeMansionSearch() {
     const inputMansion = document.getElementById('searchInputMansion');
     const suggestionsMansion = document.getElementById('suggestionsMansion');
@@ -1913,23 +551,29 @@ function initializeMansionSearch() {
         { name: "グランフロント大阪オーナーズタワー", buyers: 120 },
         { name: "ジオタワー高槻ミューズフロント", buyers: 32 },
         { name: "ザ・パークハウス神戸", buyers: 58 },
-        { name: "ローレルコート難波", buyers: 15 }
+        { name: "ローレルコート難波", buyers: 15 },
+        { name: "プラウドタワー梅田", buyers: 87 },
+        { name: "シティタワー大阪", buyers: 64 },
+        { name: "ブランズタワー御堂筋本町", buyers: 41 }
     ];
+    
+    if (!inputMansion || !suggestionsMansion) return;
+    
     inputMansion.addEventListener('input', () => {
         const query = inputMansion.value.toLowerCase();
         suggestionsMansion.innerHTML = '';
+        
         if (query.length < 2) {
             suggestionsMansion.style.display = 'none';
-            inputMansion.setAttribute('aria-expanded', 'false');
             return;
         }
+        
         const filtered = dummyMansions.filter(m => m.name.toLowerCase().includes(query));
+        
         if (filtered.length > 0) {
-            filtered.forEach((mansion, idx) => {
+            filtered.forEach(mansion => {
                 const item = document.createElement('div');
                 item.classList.add('suggestion-item');
-                item.setAttribute('role', 'option');
-                item.setAttribute('id', `suggestion-${idx}`);
                 item.innerHTML = `
                     <span class="mansion-name">${mansion.name}</span>
                     <span class="buyer-count">${mansion.buyers}組の購入希望者</span>
@@ -1937,21 +581,19 @@ function initializeMansionSearch() {
                 item.addEventListener('click', () => {
                     inputMansion.value = mansion.name;
                     suggestionsMansion.style.display = 'none';
-                    inputMansion.setAttribute('aria-expanded', 'false');
                     alert(`${mansion.name}の購入希望者 ${mansion.buyers}組を検索しました！`);
                 });
                 suggestionsMansion.appendChild(item);
             });
             suggestionsMansion.style.display = 'block';
-            inputMansion.setAttribute('aria-expanded', 'true');
         } else {
             suggestionsMansion.style.display = 'none';
-            inputMansion.setAttribute('aria-expanded', 'false');
         }
     });
+    
     document.getElementById('searchButtonMansion').addEventListener('click', () => {
         const mansionName = inputMansion.value.trim();
-        if(mansionName){
+        if (mansionName) {
             alert(`「${mansionName}」の査定を開始します。`);
         } else {
             alert('マンション名を入力してください。');
@@ -1959,17 +601,22 @@ function initializeMansionSearch() {
     });
 }
 
+// 戸建検索
 function initializeHouseSearch() {
-    document.getElementById('tab-house').addEventListener('submit', e => {
+    const form = document.getElementById('tab-house');
+    if (!form) return;
+    
+    form.addEventListener('submit', e => {
         e.preventDefault();
         const pref = document.getElementById('house-prefecture').value.trim();
         const city = document.getElementById('house-city').value.trim();
         const railway = document.getElementById('house-railway').value.trim();
         const line = document.getElementById('house-line').value.trim();
         const station = document.getElementById('house-station').value.trim();
-        if(pref && city){
+        
+        if (pref && city) {
             alert(`戸建の査定: ${pref} ${city} の購入希望者を検索します。`);
-        } else if(railway && station){
+        } else if (railway && station) {
             alert(`戸建の査定: ${railway} ${line} ${station} の購入希望者を検索します。`);
         } else {
             alert('都道府県と市区町村、または路線会社名と駅名を選択してください。');
@@ -1977,17 +624,22 @@ function initializeHouseSearch() {
     });
 }
 
+// 土地検索
 function initializeLandSearch() {
-    document.getElementById('tab-land').addEventListener('submit', e => {
+    const form = document.getElementById('tab-land');
+    if (!form) return;
+    
+    form.addEventListener('submit', e => {
         e.preventDefault();
         const pref = document.getElementById('land-prefecture').value.trim();
         const city = document.getElementById('land-city').value.trim();
         const railway = document.getElementById('land-railway').value.trim();
         const line = document.getElementById('land-line').value.trim();
         const station = document.getElementById('land-station').value.trim();
-        if(pref && city){
+        
+        if (pref && city) {
             alert(`土地の査定: ${pref} ${city} の購入希望者を検索します。`);
-        } else if(railway && station){
+        } else if (railway && station) {
             alert(`土地の査定: ${railway} ${line} ${station} の購入希望者を検索します。`);
         } else {
             alert('都道府県と市区町村、または路線会社名と駅名を選択してください。');
@@ -1996,19 +648,17 @@ function initializeLandSearch() {
 }
 
 // ページ読み込み時に初期化
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadData();
     setupSearchMethodToggle('house');
     setupSearchMethodToggle('land');
     setup3TierRailwaySelect('house');
     setup3TierRailwaySelect('land');
-    initializeAreaSelects('house');
-    initializeAreaSelects('land');
     initializeTabSwitching();
     initializeMansionSearch();
     initializeHouseSearch();
     initializeLandSearch();
 });
-
 </script>
 
 </body>
