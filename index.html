@@ -205,6 +205,274 @@
         .method-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .method-btn.active { background: var(--primary-color); color: var(--white); box-shadow: 0 4px 15px rgba(255,107,107,0.4); }
 
+        /* マンション一覧セクション */
+        .mansions-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark-color);
+        }
+
+        .mansions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .mansion-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .mansion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .mansion-status {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mansion-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f8f8, #fff);
+            border-bottom: 1px solid #eee;
+        }
+
+        .mansion-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .mansion-address {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .mansion-body { padding: 20px; }
+
+        .hopefuls-highlight {
+            background: linear-gradient(135deg, var(--primary-color), #ff8787);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .hopefuls-number { font-size: 32px; font-weight: 700; }
+        .hopefuls-text { font-size: 14px; opacity: 0.9; }
+
+        .mansion-buyers-preview { margin-bottom: 16px; }
+        .buyers-preview-title { font-size: 12px; color: #888; margin-bottom: 8px; }
+
+        .buyer-preview {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+        }
+
+        .buyer-preview-price { font-weight: 700; color: var(--primary-color); }
+        .buyer-preview-info { color: #666; }
+
+        .view-all-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .view-all-btn:hover { background: #1a252f; }
+
+        .load-more-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 15px 50px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active { display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 24px;
+            background: linear-gradient(135deg, var(--primary-color), #ff8787);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h2 { font-size: 24px; margin-bottom: 8px; }
+        .modal-header p { opacity: 0.9; }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover { background: rgba(255,255,255,0.3); }
+
+        .modal-body { padding: 24px; }
+
+        .buyer-card {
+            background: #f8f8f8;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .buyer-badge {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #FFD700;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .buyer-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+        }
+
+        .buyer-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .buyer-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .buyer-detail-icon { font-size: 16px; }
+
+        .contact-buyer-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .contact-buyer-btn:hover { opacity: 0.9; }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #888;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         footer {
             background: var(--dark-color);
             color: var(--white);
@@ -216,13 +484,15 @@
         footer .copyright { font-size: 12px; color: #888; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
+            .hero h1 { font-size: 28px; }
             .stats-container { gap: 15px; }
-            .stat-card { min-width: 100%; }
+            .stat-card { min-width: 100%; padding: 20px; }
             header { flex-direction: column; gap: 15px; }
             nav { font-size: 14px; }
             .tab-button { padding: 10px 15px; font-size: 16px; }
             .search-box { flex-direction: column; }
+            .mansions-grid { grid-template-columns: 1fr; }
+            .buyer-details { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -244,16 +514,16 @@
 
     <section class="hero" role="banner">
         <h1 id="heroTitle">URICO - マンション売却<span>マッチング</span></h1>
-        <p>25,463組の購入希望者データベースから最適な買主を見つけます</p>
+        <p id="heroSubtitle">25,463組の購入希望者データベースから最適な買主を見つけます</p>
     </section>
 
     <section class="stats-container">
         <div class="stat-card">
-            <span class="number" id="statBuyers">25,463</span>
+            <span class="number" id="statBuyers">-</span>
             <span class="label">購入希望者数</span>
         </div>
         <div class="stat-card">
-            <span class="number" id="statProperties">6,368</span>
+            <span class="number" id="statProperties">-</span>
             <span class="label">対応物件数</span>
         </div>
         <div class="stat-card">
@@ -351,24 +621,214 @@
         </form>
     </section>
 
+    <!-- マンション一覧セクション -->
+    <section class="mansions-section" id="mansionsSection">
+        <h2 class="section-title">購入希望者が多い<span style="color: var(--primary-color);">マンション</span></h2>
+        <div id="mansionsList" class="mansions-grid">
+            <div class="loading" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>マンションデータを読み込んでいます...</p>
+            </div>
+        </div>
+        <button class="load-more-btn" id="loadMoreBtn" style="display:none;">もっと見る</button>
+    </section>
+
+    <!-- 購入希望者詳細モーダル -->
+    <div class="modal" id="buyerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">×</button>
+                <h2 id="modalTitle">マンション名</h2>
+                <p id="modalSubtitle">購入希望者数</p>
+            </div>
+            <div class="modal-body" id="buyerCards">
+                <!-- 購入希望者カードがここに挿入される -->
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>関西最大級の不動産売却マッチングサービス</p>
         <p class="copyright">&copy; 2026 URICO All Rights Reserved.</p>
     </footer>
 
-<script>
+<script type="module">
+// マンションデータベースをインポート
+import { MANSION_DB } from './mansion_db.js';
+
 // グローバル変数
 let railwayData = {};
 let areaData = {};
+let mansionDatabase = [];
+let displayedCount = 20;
 
 const statsData = {
-    mansion: { title: "マンション売却<span>マッチング</span>", buyers: "25,463", properties: "6,368", rate: "72.4%" },
-    house: { title: "戸建売却<span>マッチング</span>", buyers: "18,921", properties: "4,120", rate: "68.1%" },
-    land: { title: "土地売却<span>マッチング</span>", buyers: "12,509", properties: "2,890", rate: "65.5%" }
+    mansion: { title: "マンション売却<span>マッチング</span>", rate: "72.4%" },
+    house: { title: "戸建売却<span>マッチング</span>", rate: "68.1%" },
+    land: { title: "土地売却<span>マッチング</span>", rate: "65.5%" }
 };
 
-// 外部JSONファイルを読み込み
-async function loadData() {
+// 初期化
+document.addEventListener('DOMContentLoaded', async () => {
+    // マンションデータベースを設定
+    mansionDatabase = MANSION_DB;
+    
+    // 統計情報を更新
+    updateMansionStats();
+    
+    // マンション一覧を表示
+    displayTopMansions();
+    
+    // 外部JSONデータを読み込み
+    await loadExternalData();
+    
+    // 各機能を初期化
+    setupSearchMethodToggle('house');
+    setupSearchMethodToggle('land');
+    setup3TierRailwaySelect('house');
+    setup3TierRailwaySelect('land');
+    initializeTabSwitching();
+    initializeMansionSearch();
+    initializeHouseSearch();
+    initializeLandSearch();
+    
+    // もっと見るボタン
+    document.getElementById('loadMoreBtn').addEventListener('click', loadMoreMansions);
+});
+
+// 統計情報を更新
+function updateMansionStats() {
+    const totalBuyers = mansionDatabase.reduce((sum, m) => sum + (m.buyers?.length || 0), 0);
+    const totalMansions = mansionDatabase.length;
+    
+    animateNumber('statBuyers', totalBuyers);
+    animateNumber('statProperties', totalMansions);
+    
+    document.getElementById('heroSubtitle').textContent = 
+        `${totalBuyers.toLocaleString()}組の購入希望者データベースから最適な買主を見つけます`;
+}
+
+// 数字をアニメーション表示
+function animateNumber(elementId, targetNumber) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    let current = 0;
+    const increment = Math.ceil(targetNumber / 50);
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= targetNumber) {
+            current = targetNumber;
+            clearInterval(timer);
+        }
+        el.textContent = current.toLocaleString();
+    }, 30);
+}
+
+// マンション一覧を表示
+function displayTopMansions() {
+    const container = document.getElementById('mansionsList');
+    const loading = document.getElementById('loadingIndicator');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+    if (!container) return;
+    if (loading) loading.style.display = 'none';
+    
+    // 購入希望者数でソート
+    const sortedMansions = [...mansionDatabase]
+        .sort((a, b) => (b.buyers?.length || 0) - (a.buyers?.length || 0))
+        .slice(0, displayedCount);
+    
+    container.innerHTML = sortedMansions.map(mansion => {
+        const buyerCount = mansion.buyers?.length || 0;
+        const topBuyers = (mansion.buyers || []).slice(0, 2);
+        const hot = buyerCount >= 8 ? '<div class="mansion-status">HOT</div>' : '';
+        
+        return `
+            <div class="mansion-card" onclick="showBuyerDetails('${mansion.name.replace(/'/g, "\\'")}')">
+                ${hot}
+                <div class="mansion-header">
+                    <h3>${mansion.name}</h3>
+                    <div class="mansion-address">📍 ${mansion.address || '関西エリア'}</div>
+                </div>
+                <div class="mansion-body">
+                    <div class="hopefuls-highlight">
+                        <div class="hopefuls-number">${buyerCount}組</div>
+                        <div class="hopefuls-text">の購入希望者</div>
+                    </div>
+                    <div class="mansion-buyers-preview">
+                        <div class="buyers-preview-title">購入希望者（一部）</div>
+                        ${topBuyers.map(b => `
+                            <div class="buyer-preview">
+                                <span class="buyer-preview-price">${b.price || '価格応相談'}</span>
+                                <span class="buyer-preview-info">${b.family || ''} / ${b.occupation || ''}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="view-all-btn">全${buyerCount}組の詳細を見る</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // もっと見るボタンの表示制御
+    if (loadMoreBtn) {
+        loadMoreBtn.style.display = displayedCount < mansionDatabase.length ? 'block' : 'none';
+    }
+}
+
+// もっと見る
+function loadMoreMansions() {
+    displayedCount += 20;
+    displayTopMansions();
+}
+
+// 購入希望者詳細モーダル表示
+window.showBuyerDetails = function(mansionName) {
+    const mansion = mansionDatabase.find(m => m.name === mansionName);
+    if (!mansion) return;
+    
+    const modal = document.getElementById('buyerModal');
+    const title = document.getElementById('modalTitle');
+    const subtitle = document.getElementById('modalSubtitle');
+    const cards = document.getElementById('buyerCards');
+    
+    if (title) title.textContent = mansion.name;
+    if (subtitle) subtitle.textContent = `${(mansion.buyers || []).length}組の購入希望者`;
+    
+    if (cards) {
+        cards.innerHTML = (mansion.buyers || []).map((b, idx) => `
+            <div class="buyer-card">
+                ${idx === 0 ? '<div class="buyer-badge">最高額</div>' : ''}
+                <div class="buyer-price">${b.price || '価格応相談'}</div>
+                <div class="buyer-details">
+                    <div class="buyer-detail"><span class="buyer-detail-icon">👨‍👩‍👧</span><span>${b.family || '-'}</span></div>
+                    <div class="buyer-detail"><span class="buyer-detail-icon">💼</span><span>${b.occupation || '-'}</span></div>
+                    <div class="buyer-detail"><span class="buyer-detail-icon">📅</span><span>${b.timing || '-'}</span></div>
+                    <div class="buyer-detail"><span class="buyer-detail-icon">💳</span><span>${b.method || '-'}</span></div>
+                    <div class="buyer-detail"><span class="buyer-detail-icon">🎯</span><span>${b.reason || '-'}</span></div>
+                    <div class="buyer-detail"><span class="buyer-detail-icon">🎂</span><span>${b.age || '-'}</span></div>
+                </div>
+                <button class="contact-buyer-btn" onclick="contactBuyer(${idx})">この購入希望者に売却相談する</button>
+            </div>
+        `).join('');
+    }
+    
+    modal.classList.add('active');
+};
+
+// モーダルを閉じる
+window.closeModal = function() {
+    document.getElementById('buyerModal')?.classList.remove('active');
+};
+
+// 購入希望者に連絡
+window.contactBuyer = function(buyerId) {
+    alert('売却相談フォームへ移動します。担当者から折り返しご連絡いたします。');
+};
+
+// 外部JSONデータを読み込み
+async function loadExternalData() {
     try {
         const [railwayRes, areaRes] = await Promise.all([
             fetch('./railway_data.json'),
@@ -377,7 +837,6 @@ async function loadData() {
         railwayData = await railwayRes.json();
         areaData = await areaRes.json();
         
-        // データ読み込み後に初期化
         initializeRailwaySelects('house');
         initializeRailwaySelects('land');
         initializeAreaSelects('house');
@@ -512,6 +971,7 @@ function initializeTabSwitching() {
         house: document.getElementById('tab-house'),
         land: document.getElementById('tab-land'),
     };
+    const mansionsSection = document.getElementById('mansionsSection');
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -528,6 +988,11 @@ function initializeTabSwitching() {
                 element.style.display = (key === selectedType) ? 'block' : 'none';
             });
             
+            // マンションセクションの表示切り替え
+            if (mansionsSection) {
+                mansionsSection.style.display = (selectedType === 'mansion') ? 'block' : 'none';
+            }
+            
             updateStats(selectedType);
         });
     });
@@ -536,8 +1001,6 @@ function initializeTabSwitching() {
         const data = statsData[type];
         if (!data) return;
         document.getElementById('heroTitle').innerHTML = `URICO - ${data.title}`;
-        document.getElementById('statBuyers').textContent = data.buyers;
-        document.getElementById('statProperties').textContent = data.properties;
         document.getElementById('statSuccessRate').textContent = data.rate;
     }
 }
@@ -546,16 +1009,6 @@ function initializeTabSwitching() {
 function initializeMansionSearch() {
     const inputMansion = document.getElementById('searchInputMansion');
     const suggestionsMansion = document.getElementById('suggestionsMansion');
-    const dummyMansions = [
-        { name: "D'クラディア梅田", buyers: 45 },
-        { name: "グランフロント大阪オーナーズタワー", buyers: 120 },
-        { name: "ジオタワー高槻ミューズフロント", buyers: 32 },
-        { name: "ザ・パークハウス神戸", buyers: 58 },
-        { name: "ローレルコート難波", buyers: 15 },
-        { name: "プラウドタワー梅田", buyers: 87 },
-        { name: "シティタワー大阪", buyers: 64 },
-        { name: "ブランズタワー御堂筋本町", buyers: 41 }
-    ];
     
     if (!inputMansion || !suggestionsMansion) return;
     
@@ -563,12 +1016,14 @@ function initializeMansionSearch() {
         const query = inputMansion.value.toLowerCase();
         suggestionsMansion.innerHTML = '';
         
-        if (query.length < 2) {
+        if (query.length < 1) {
             suggestionsMansion.style.display = 'none';
             return;
         }
         
-        const filtered = dummyMansions.filter(m => m.name.toLowerCase().includes(query));
+        const filtered = mansionDatabase
+            .filter(m => (m.name || '').toLowerCase().includes(query))
+            .slice(0, 10);
         
         if (filtered.length > 0) {
             filtered.forEach(mansion => {
@@ -576,12 +1031,12 @@ function initializeMansionSearch() {
                 item.classList.add('suggestion-item');
                 item.innerHTML = `
                     <span class="mansion-name">${mansion.name}</span>
-                    <span class="buyer-count">${mansion.buyers}組の購入希望者</span>
+                    <span class="buyer-count">${(mansion.buyers || []).length}組</span>
                 `;
                 item.addEventListener('click', () => {
                     inputMansion.value = mansion.name;
                     suggestionsMansion.style.display = 'none';
-                    alert(`${mansion.name}の購入希望者 ${mansion.buyers}組を検索しました！`);
+                    showBuyerDetails(mansion.name);
                 });
                 suggestionsMansion.appendChild(item);
             });
@@ -594,9 +1049,30 @@ function initializeMansionSearch() {
     document.getElementById('searchButtonMansion').addEventListener('click', () => {
         const mansionName = inputMansion.value.trim();
         if (mansionName) {
-            alert(`「${mansionName}」の査定を開始します。`);
+            const mansion = mansionDatabase.find(m => 
+                (m.name || '').toLowerCase().includes(mansionName.toLowerCase())
+            );
+            if (mansion) {
+                showBuyerDetails(mansion.name);
+            } else {
+                alert('該当するマンションが見つかりません。無料査定でお探しします。');
+            }
         } else {
             alert('マンション名を入力してください。');
+        }
+    });
+    
+    // Enterキーで検索
+    inputMansion.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            document.getElementById('searchButtonMansion').click();
+        }
+    });
+    
+    // 外部クリックで候補を閉じる
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-box')) {
+            suggestionsMansion.style.display = 'none';
         }
     });
 }
@@ -646,19 +1122,6 @@ function initializeLandSearch() {
         }
     });
 }
-
-// ページ読み込み時に初期化
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadData();
-    setupSearchMethodToggle('house');
-    setupSearchMethodToggle('land');
-    setup3TierRailwaySelect('house');
-    setup3TierRailwaySelect('land');
-    initializeTabSwitching();
-    initializeMansionSearch();
-    initializeHouseSearch();
-    initializeLandSearch();
-});
 </script>
 
 </body>
