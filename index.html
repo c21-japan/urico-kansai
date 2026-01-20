@@ -93,18 +93,6 @@
             color: var(--primary-color);
         }
 
-        .tel-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
         .hero {
             padding: 80px 5%;
             text-align: center;
@@ -203,6 +191,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 10px;
+            position: relative;
         }
         .search-input {
             flex: 1;
@@ -229,7 +218,7 @@
 
         .suggestions {
             position: absolute;
-            top: calc(100% + 62px); /* マンション検索フォームの下に表示 */
+            top: 100%;
             left: 0;
             right: 0;
             background: var(--white);
@@ -477,7 +466,7 @@
         </div>
 
                 <!-- 戸建タブ -->
-        <form id="search-form-house" class="tab-content" id="tab-house" role="tabpanel" aria-labelledby="tab-house-btn" style="display:none;">
+        <form id="tab-house" class="tab-content" role="tabpanel" aria-labelledby="tab-house-btn" style="display:none;">
             <!-- 検索方法切り替えボタン -->
             <div class="search-method-buttons">
                 <button type="button" class="method-btn" id="house-method-station">駅から探す</button>
@@ -549,7 +538,7 @@
 
         
         <!-- 土地タブ -->
-        <form id="search-form-land" class="tab-content" id="tab-land" role="tabpanel" aria-labelledby="tab-land-btn" hidden>
+        <form id="tab-land" class="tab-content" role="tabpanel" aria-labelledby="tab-land-btn" hidden
             <!-- 検索方法切り替えボタン -->
             <div class="search-method-buttons">
                 <button type="button" class="method-btn" id="land-method-station">駅から探す</button>
@@ -1875,8 +1864,8 @@ function initializeTabSwitching() {
     const tabs = document.querySelectorAll('.search-tabs button');
     const contents = {
         mansion: document.getElementById('tab-mansion'),
-        house: document.getElementById('search-form-house'),
-        land: document.getElementById('search-form-land'),
+        house: document.getElementById('tab-house'),
+        land: document.getElementById('tab-land'),
     };
     const heroTitle = document.getElementById('heroTitle');
     const statBuyers = document.getElementById('statBuyers');
@@ -1971,7 +1960,7 @@ function initializeMansionSearch() {
 }
 
 function initializeHouseSearch() {
-    document.getElementById('search-form-house').addEventListener('submit', e => {
+    document.getElementById('tab-house').addEventListener('submit', e => {
         e.preventDefault();
         const pref = document.getElementById('house-prefecture').value.trim();
         const city = document.getElementById('house-city').value.trim();
@@ -1989,7 +1978,7 @@ function initializeHouseSearch() {
 }
 
 function initializeLandSearch() {
-    document.getElementById('search-form-land').addEventListener('submit', e => {
+    document.getElementById('tab-land').addEventListener('submit', e => {
         e.preventDefault();
         const pref = document.getElementById('land-prefecture').value.trim();
         const city = document.getElementById('land-city').value.trim();
