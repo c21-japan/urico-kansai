@@ -534,7 +534,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="modal-close" onclick="closeModal()">×</button>
-                <h2 id="modalTitle">マンション名</h2>
+                <h2 id="modalTitle">物件名</h2>
                 <p id="modalSubtitle">購入希望者数</p>
             </div>
             <div class="modal-body" id="buyerCards">
@@ -548,13 +548,18 @@
     </footer>
 
 <script type="module">
-// マンションデータベースをインポート
+// データベースをインポート
 import { MANSION_DB } from './mansion_db.js';
+import { HOUSE_DB } from './house_db.js';
+import { LAND_DB } from './land_db.js';
 
 // グローバル変数
 let railwayData = {};
 let areaData = {};
 let mansionDatabase = [];
+let houseDatabase = [];
+let landDatabase = [];
+let currentType = 'mansion'; // 現在の物件タイプ
 
 const statsData = {
     mansion: { title: "マンション売却<span>マッチング</span>", rate: "72.4%" },
@@ -565,7 +570,14 @@ const statsData = {
 // 初期化
 document.addEventListener('DOMContentLoaded', async () => {
     mansionDatabase = MANSION_DB;
-    updateMansionStats();
+    houseDatabase = HOUSE_DB;
+    landDatabase = LAND_DB;
+    console.log('読み込まれたマンション数:', mansionDatabase.length);
+    console.log('読み込まれた戸建数:', houseDatabase.length);
+    console.log('読み込まれた土地数:', landDatabase.length);
+    const totalBuyers = mansionDatabase.reduce((sum, m) => sum + (m.buyers?.length || 0), 0);
+    console.log('読み込まれた購入希望者数:', totalBuyers);
+    updateStats('mansion');
     await loadExternalData();
     setupSearchMethodToggle('house');
     setupSearchMethodToggle('land');
@@ -577,11 +589,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeLandSearch();
 });
 
-function updateMansionStats() {
-    const totalBuyers = mansionDatabase.reduce((sum, m) => sum + (m.buyers?.length || 0), 0);
-    const totalMansions = mansionDatabase.length;
+function updateStats(type) {
+    currentType = type;
+    let database, totalBuyers, totalProperties;
+    
+    if (type === 'mansion') {
+        database = mansionDatabase;
+    } else if (type === 'house') {
+        database = houseDatabase;
+    } else if (type === 'land') {
+        database = landDatabase;
+    } else {
+        database = mansionDatabase;
+    }
+    
+    totalBuyers = database.reduce((sum, item) => sum + (item.buyers?.length || 0), 0);
+    totalProperties = database.length;
     animateNumber('statBuyers', totalBuyers);
-    animateNumber('statProperties', totalMansions);
+    animateNumber('statProperties', totalProperties);
     document.getElementById('heroSubtitle').textContent = 
         `${totalBuyers.toLocaleString()}組の購入希望者データベースから最適な買主を見つけます`;
 }
@@ -602,20 +627,34 @@ function animateNumber(elementId, targetNumber) {
 }
 
 // 購入希望者詳細モーダル表示（業務用シンプルUI）
-window.showBuyerDetails = function(mansionName) {
-    const mansion = mansionDatabase.find(m => m.name === mansionName);
-    if (!mansion) return;
+window.showBuyerDetails = function(itemName, type = null) {
+    const itemType = type || currentType;
+    let database, item;
+    
+    if (itemType === 'house') {
+        database = houseDatabase;
+        item = database.find(i => i.name === itemName || i.address === itemName);
+    } else if (itemType === 'land') {
+        database = landDatabase;
+        item = database.find(i => i.name === itemName || i.address === itemName);
+    } else {
+        database = mansionDatabase;
+        item = database.find(i => i.name === itemName);
+    }
+    
+    if (!item) return;
     
     const modal = document.getElementById('buyerModal');
     const title = document.getElementById('modalTitle');
     const subtitle = document.getElementById('modalSubtitle');
     const cards = document.getElementById('buyerCards');
     
-    if (title) title.textContent = mansion.name;
-    if (subtitle) subtitle.textContent = `購入希望者 ${(mansion.buyers || []).length}件`;
+    const displayName = item.name || item.address || '物件情報';
+    if (title) title.textContent = displayName;
+    if (subtitle) subtitle.textContent = `購入希望者 ${(item.buyers || []).length}件`;
     
     if (cards) {
-        cards.innerHTML = (mansion.buyers || []).map((b, idx) => `
+        cards.innerHTML = (item.buyers || []).map((b, idx) => `
             <div class="buyer-block">
                 <div class="buyer-block-header">
                     <span class="buyer-number">購入希望者 #${idx + 1}</span>
@@ -806,14 +845,13 @@ function initializeTabSwitching() {
                 element.style.display = (key === selectedType) ? 'block' : 'none';
             });
             updateStats(selectedType);
+            const data = statsData[selectedType];
+            if (data) {
+                document.getElementById('heroTitle').innerHTML = `URICO - ${data.title}`;
+                document.getElementById('statSuccessRate').textContent = data.rate;
+            }
         });
     });
-    function updateStats(type) {
-        const data = statsData[type];
-        if (!data) return;
-        document.getElementById('heroTitle').innerHTML = `URICO - ${data.title}`;
-        document.getElementById('statSuccessRate').textContent = data.rate;
-    }
 }
 
 function initializeMansionSearch() {
@@ -887,12 +925,104 @@ function initializeHouseSearch() {
         const railway = document.getElementById('house-railway').value.trim();
         const line = document.getElementById('house-line').value.trim();
         const station = document.getElementById('house-station').value.trim();
+        
+        let matchedItems = [];
+        
+        // エリア検索
         if (pref && city) {
-            alert(`戸建の査定: ${pref} ${city} の購入希望者を検索します。`);
-        } else if (railway && station) {
-            alert(`戸建の査定: ${railway} ${line} ${station} の購入希望者を検索します。`);
+            matchedItems = houseDatabase.filter(item => {
+                const address = item.address || '';
+                return address.includes(pref) && address.includes(city);
+            });
+        } 
+        // 駅検索
+        else if (railway && station) {
+            matchedItems = houseDatabase.filter(item => {
+                const address = item.address || '';
+                const stationInfo = item.station || '';
+                return address.includes(station) || stationInfo.includes(station);
+            });
         } else {
             alert('都道府県と市区町村、または路線会社名と駅名を選択してください。');
+            return;
+        }
+        
+        if (matchedItems.length === 0) {
+            alert(`${pref && city ? `${pref} ${city}` : `${railway} ${line} ${station}`} に対応する戸建の購入希望者は見つかりませんでした。`);
+            return;
+        }
+        
+        // 購入希望者の合計数を計算
+        const totalBuyers = matchedItems.reduce((sum, item) => sum + (item.buyers?.length || 0), 0);
+        
+        if (totalBuyers === 0) {
+            alert(`${pref && city ? `${pref} ${city}` : `${railway} ${line} ${station}`} には購入希望者が登録されていません。`);
+            return;
+        }
+        
+        // 複数の物件がある場合は最初のものを表示、または合計情報を表示
+        if (matchedItems.length === 1) {
+            showBuyerDetails(matchedItems[0].name || matchedItems[0].address, 'house');
+        } else {
+            // 複数の物件がある場合、すべての購入希望者をまとめて表示
+            const allBuyers = matchedItems.flatMap(item => 
+                (item.buyers || []).map(buyer => ({ ...buyer, propertyName: item.name || item.address }))
+            );
+            
+            const modal = document.getElementById('buyerModal');
+            const title = document.getElementById('modalTitle');
+            const subtitle = document.getElementById('modalSubtitle');
+            const cards = document.getElementById('buyerCards');
+            
+            if (title) title.textContent = `${pref && city ? `${pref} ${city}` : `${railway} ${line} ${station}`} の戸建`;
+            if (subtitle) subtitle.textContent = `購入希望者 ${totalBuyers}件`;
+            
+            if (cards) {
+                cards.innerHTML = allBuyers.map((b, idx) => `
+                    <div class="buyer-block">
+                        <div class="buyer-block-header">
+                            <span class="buyer-number">購入希望者 #${idx + 1}</span>
+                            <span class="buyer-price-value">${b.price || '価格応相談'}</span>
+                        </div>
+                        ${b.propertyName ? `<div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">物件: ${b.propertyName}</div>` : ''}
+                        <div class="buyer-info-table">
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">家族構成</span>
+                                <span class="buyer-info-value">${b.family || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">年齢</span>
+                                <span class="buyer-info-value">${b.age || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">職業</span>
+                                <span class="buyer-info-value">${b.occupation || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">購入時期</span>
+                                <span class="buyer-info-value">${b.timing || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">購入方法</span>
+                                <span class="buyer-info-value">${b.method || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">購入理由</span>
+                                <span class="buyer-info-value">${b.reason || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row ng-row" style="grid-column: 1 / -1;">
+                                <span class="buyer-info-label">NG条件</span>
+                                <span class="buyer-info-value">${b.ng || '特になし'}</span>
+                            </div>
+                        </div>
+                        <div class="buyer-action">
+                            <button class="contact-buyer-btn" onclick="contactBuyer(${idx})">この購入希望者を紹介してほしい</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            modal.classList.add('active');
         }
     });
 }
@@ -907,12 +1037,104 @@ function initializeLandSearch() {
         const railway = document.getElementById('land-railway').value.trim();
         const line = document.getElementById('land-line').value.trim();
         const station = document.getElementById('land-station').value.trim();
+        
+        let matchedItems = [];
+        
+        // エリア検索
         if (pref && city) {
-            alert(`土地の査定: ${pref} ${city} の購入希望者を検索します。`);
-        } else if (railway && station) {
-            alert(`土地の査定: ${railway} ${line} ${station} の購入希望者を検索します。`);
+            matchedItems = landDatabase.filter(item => {
+                const address = item.address || '';
+                return address.includes(pref) && address.includes(city);
+            });
+        } 
+        // 駅検索
+        else if (railway && station) {
+            matchedItems = landDatabase.filter(item => {
+                const address = item.address || '';
+                const stationInfo = item.station || '';
+                return address.includes(station) || stationInfo.includes(station);
+            });
         } else {
             alert('都道府県と市区町村、または路線会社名と駅名を選択してください。');
+            return;
+        }
+        
+        if (matchedItems.length === 0) {
+            alert(`${pref && city ? `${pref} ${city}` : `${railway} ${line} ${station}`} に対応する土地の購入希望者は見つかりませんでした。`);
+            return;
+        }
+        
+        // 購入希望者の合計数を計算
+        const totalBuyers = matchedItems.reduce((sum, item) => sum + (item.buyers?.length || 0), 0);
+        
+        if (totalBuyers === 0) {
+            alert(`${pref && city ? `${pref} ${city}` : `${railway} ${line} ${station}`} には購入希望者が登録されていません。`);
+            return;
+        }
+        
+        // 複数の物件がある場合は最初のものを表示、または合計情報を表示
+        if (matchedItems.length === 1) {
+            showBuyerDetails(matchedItems[0].name || matchedItems[0].address, 'land');
+        } else {
+            // 複数の物件がある場合、すべての購入希望者をまとめて表示
+            const allBuyers = matchedItems.flatMap(item => 
+                (item.buyers || []).map(buyer => ({ ...buyer, propertyName: item.name || item.address }))
+            );
+            
+            const modal = document.getElementById('buyerModal');
+            const title = document.getElementById('modalTitle');
+            const subtitle = document.getElementById('modalSubtitle');
+            const cards = document.getElementById('buyerCards');
+            
+            if (title) title.textContent = `${pref && city ? `${pref} ${city}` : `${railway} ${line} ${station}`} の土地`;
+            if (subtitle) subtitle.textContent = `購入希望者 ${totalBuyers}件`;
+            
+            if (cards) {
+                cards.innerHTML = allBuyers.map((b, idx) => `
+                    <div class="buyer-block">
+                        <div class="buyer-block-header">
+                            <span class="buyer-number">購入希望者 #${idx + 1}</span>
+                            <span class="buyer-price-value">${b.price || '価格応相談'}</span>
+                        </div>
+                        ${b.propertyName ? `<div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">物件: ${b.propertyName}</div>` : ''}
+                        <div class="buyer-info-table">
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">家族構成</span>
+                                <span class="buyer-info-value">${b.family || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">年齢</span>
+                                <span class="buyer-info-value">${b.age || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">職業</span>
+                                <span class="buyer-info-value">${b.occupation || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">購入時期</span>
+                                <span class="buyer-info-value">${b.timing || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">購入方法</span>
+                                <span class="buyer-info-value">${b.method || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row">
+                                <span class="buyer-info-label">購入理由</span>
+                                <span class="buyer-info-value">${b.reason || '-'}</span>
+                            </div>
+                            <div class="buyer-info-row ng-row" style="grid-column: 1 / -1;">
+                                <span class="buyer-info-label">NG条件</span>
+                                <span class="buyer-info-value">${b.ng || '特になし'}</span>
+                            </div>
+                        </div>
+                        <div class="buyer-action">
+                            <button class="contact-buyer-btn" onclick="contactBuyer(${idx})">この購入希望者を紹介してほしい</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            modal.classList.add('active');
         }
     });
 }
