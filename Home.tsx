@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -68,7 +70,12 @@ export default function Home() {
     landRecords: 0,
     landStations: 0,
   });
+  const [displayStats, setDisplayStats] = useState({
+    buyers: 0,
+    properties: 0,
+  });
 
+  // データ読み込み
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -89,6 +96,10 @@ export default function Home() {
           landRecords: jsonData.categories.land.total_records,
           landStations: jsonData.categories.land.total_stations,
         });
+        setDisplayStats({
+          buyers: jsonData.total_records,
+          properties: jsonData.categories.mansion.total_properties,
+        });
       } catch (error) {
         console.error("データ読み込みエラー:", error);
       } finally {
@@ -99,6 +110,7 @@ export default function Home() {
     loadData();
   }, []);
 
+  // フィルター処理
   useEffect(() => {
     let filtered = allData;
 
@@ -121,7 +133,16 @@ export default function Home() {
     }
 
     setFilteredData(filtered);
-  }, [categoryFilter, searchFilter, allData]);
+
+    // 統計情報を更新
+    const mansionCount = filtered.filter(item => "name" in item).length;
+    const landCount = filtered.filter(item => "station" in item).length;
+    
+    setDisplayStats({
+      buyers: categoryFilter === "mansion" ? mansionCount : categoryFilter === "land" ? landCount : filtered.length,
+      properties: categoryFilter === "mansion" ? mansionCount : categoryFilter === "land" ? landCount : stats.mansionProperties,
+    });
+  }, [categoryFilter, searchFilter, allData, stats.mansionProperties]);
 
   const handleExportCSV = () => {
     let headers: string[] = [];
@@ -250,7 +271,8 @@ export default function Home() {
                   {isMansionData ? "物件名・住所で検索" : "駅名で検索"}
                 </label>
                 <Input
-                  placeholder={isMansionData ? "物件名・住所..." : "駅名..."}
+                  type="text"
+                  placeholder={isMansionData ? "物件名または住所を入力" : "駅名を入力"}
                   value={searchFilter}
                   onChange={(e) => setSearchFilter(e.target.value)}
                 />
@@ -265,87 +287,78 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        {/* データテーブル */}
+        {/* 検索結果 */}
         <Card>
           <CardHeader>
-            <CardTitle>購入希望者一覧</CardTitle>
-            <CardDescription>{filteredData.length}件のデータを表示中</CardDescription>
+            <CardTitle>検索結果 ({filteredData.length}件)</CardTitle>
+            <CardDescription>
+              {categoryFilter === "mansion" && "マンション購入希望者"}
+              {categoryFilter === "land" && "戸建て・土地購入希望者"}
+              {categoryFilter === "all" && "全カテゴリ"}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              {isMansionData ? (
+            {filteredData.length === 0 ? (
+              <p className="text-center text-gray-500 py-8">検索結果がありません</p>
+            ) : (
+              <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-2 px-2 font-semibold">ID</th>
-                      <th className="text-left py-2 px-2 font-semibold">物件名</th>
-                      <th className="text-left py-2 px-2 font-semibold">住所</th>
-                      <th className="text-left py-2 px-2 font-semibold">購入方法</th>
-                      <th className="text-left py-2 px-2 font-semibold">職業</th>
-                      <th className="text-left py-2 px-2 font-semibold">年齢</th>
-                      <th className="text-left py-2 px-2 font-semibold">購入時期</th>
+                      {isMansionData ? (
+                        <>
+                          <th className="text-left py-2 px-2">物件名</th>
+                          <th className="text-left py-2 px-2">住所</th>
+                          <th className="text-left py-2 px-2">購入方法</th>
+                          <th className="text-left py-2 px-2">職業</th>
+                          <th className="text-left py-2 px-2">年齢</th>
+                          <th className="text-left py-2 px-2">家族構成</th>
+                        </>
+                      ) : (
+                        <>
+                          <th className="text-left py-2 px-2">駅名</th>
+                          <th className="text-left py-2 px-2">徒歩時間</th>
+                          <th className="text-left py-2 px-2">物件タイプ</th>
+                          <th className="text-left py-2 px-2">予算</th>
+                          <th className="text-left py-2 px-2">職業</th>
+                          <th className="text-left py-2 px-2">年齢</th>
+                        </>
+                      )}
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredData.slice(0, 100).map((item) => {
-                      const buyer = item as MansionBuyer;
-                      return (
-                        <tr key={buyer.id} className="border-b hover:bg-gray-50">
-                          <td className="py-2 px-2 text-gray-600">{buyer.id}</td>
-                          <td className="py-2 px-2 font-medium">{buyer.name}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.address}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.method}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.occupation}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.age}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.timing}</td>
-                        </tr>
-                      );
-                    })}
+                    {filteredData.slice(0, 50).map((item, idx) => (
+                      <tr key={idx} className="border-b hover:bg-gray-50">
+                        {isMansionData && "name" in item ? (
+                          <>
+                            <td className="py-2 px-2">{item.name}</td>
+                            <td className="py-2 px-2">{item.address}</td>
+                            <td className="py-2 px-2">{item.method}</td>
+                            <td className="py-2 px-2">{item.occupation}</td>
+                            <td className="py-2 px-2">{item.age}</td>
+                            <td className="py-2 px-2">{item.family}</td>
+                          </>
+                        ) : "station" in item ? (
+                          <>
+                            <td className="py-2 px-2">{item.station}</td>
+                            <td className="py-2 px-2">{item.walk_time}</td>
+                            <td className="py-2 px-2">{item.type}</td>
+                            <td className="py-2 px-2">{item.price}</td>
+                            <td className="py-2 px-2">{item.occupation}</td>
+                            <td className="py-2 px-2">{item.age}</td>
+                          </>
+                        ) : null}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
-              ) : (
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-2 px-2 font-semibold">ID</th>
-                      <th className="text-left py-2 px-2 font-semibold">駅名</th>
-                      <th className="text-left py-2 px-2 font-semibold">物件</th>
-                      <th className="text-left py-2 px-2 font-semibold">予算</th>
-                      <th className="text-left py-2 px-2 font-semibold">家族</th>
-                      <th className="text-left py-2 px-2 font-semibold">職業</th>
-                      <th className="text-left py-2 px-2 font-semibold">年齢</th>
-                      <th className="text-left py-2 px-2 font-semibold">購入時期</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredData.slice(0, 100).map((item) => {
-                      const buyer = item as LandBuyer;
-                      return (
-                        <tr key={buyer.id} className="border-b hover:bg-gray-50">
-                          <td className="py-2 px-2 text-gray-600">{buyer.id}</td>
-                          <td className="py-2 px-2">{buyer.station}</td>
-                          <td className="py-2 px-2">
-                            <span className={`px-2 py-1 rounded text-xs font-medium ${buyer.type === "戸建て" ? "bg-blue-100 text-blue-700" : "bg-green-100 text-green-700"}`}>
-                              {buyer.type}
-                            </span>
-                          </td>
-                          <td className="py-2 px-2">{buyer.price}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.family}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.occupation}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.age}</td>
-                          <td className="py-2 px-2 text-gray-600">{buyer.timing}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              )}
-              {filteredData.length > 100 && (
-                <div className="text-center py-4 text-gray-600">
-                  最初の100件を表示中（全{filteredData.length}件）
-                </div>
-              )}
-            </div>
+                {filteredData.length > 50 && (
+                  <p className="text-center text-gray-500 py-4 text-xs">
+                    最初の50件を表示しています（全{filteredData.length}件）
+                  </p>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
