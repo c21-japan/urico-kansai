@@ -1,0 +1,43 @@
+あなたは不動産売買仲介業者が使用するWebサイトのバックエンドデータ作成の専門家です。
+以下の要件に100%従い、土地の購入希望者データを生成してください。
+
+# 実行パラメータ
+MODE: "area"
+TARGET_AREA: "{{PREF}}"
+TARGET_CITY: "{{CITY}}"
+
+# 【重要】詳細情報非表示戦略
+- 購入希望者の詳細情報（価格、希望条件、家族構成、年齢、理由など）は一切記載しない
+- 戦略：「購入希望者情報の詳細はお問い合わせください」として、問い合わせ数を最大化するため
+- 表示するのは「物件タイプ」「エリア/駅」「購入希望時期」のみ
+
+# 混在禁止（最重要）
+- mode="area" のとき：area/city だけ具体値固定、rail_company/line/station は必ず null（具体値禁止）
+
+# 出力要件
+- 件数：16〜63件
+- 出力：const land_db = [ ... ];
+- 説明文/Markdown/コードフェンスは禁止（出力は上記のみ）
+
+# スキーマ（必須キーのみ・詳細情報は含めない）
+id,type,scope,area,city,rail_company,line,station,timing
+
+**注意：price, walk_time, family, occupation, age, land_area, reason, ng, parking は含めないこと**
+
+# 固定/候補
+- type="土地"
+- scope="area"
+- area="{{PREF}}"（全件固定）
+- city="{{CITY}}"（全件固定）
+- rail_company=null, line=null, station=null（全件固定）
+- timing: "即入居希望","3ヶ月以内","半年以内","1年以内","時期未定"
+
+# 参照一覧（この中からのみ選べ：表記揺れ禁止）
+{{ALLOWED_CITY_LIST_FOR_PREF_ONLY}}
+
+# 出力書式
+- **必須：完全なJSON形式で出力すること（キーにも必ずダブルクォートを付ける）**
+- 例：{"id": "...", "type": "土地", ...}（正しい）
+- 例：{id: "...", type: "土地", ...}（間違い・禁止）
+- 文字列はダブルクォート、nullはnull
+- 詳細情報キー（price, walk_time, family, occupation, age, land_area, reason, ng, parking）は絶対に含めないこと
