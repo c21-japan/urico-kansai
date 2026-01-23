@@ -21,7 +21,56 @@ function loadJsonFiles(dir, basePath = '') {
       try {
         const content = fs.readFileSync(fullPath, 'utf-8');
         const data = JSON.parse(content);
-        files.push(data);
+        
+        // データが配列の場合、アプリケーションが期待する形式に変換
+        if (Array.isArray(data) && data.length > 0) {
+          // 各JSONファイルを1つの物件として扱い、配列内の各アイテムをbuyersとして扱う
+          const fileName = entry.name.replace('.json', '');
+          const address = data[0].city || data[0].station || fileName;
+          
+          // 駅データの場合
+          if (data[0].rail_company && data[0].line && data[0].station) {
+            const stationName = `${data[0].rail_company} ${data[0].line} ${data[0].station}`;
+            files.push({
+              name: `${stationName}周辺の${data[0].type || '物件'}`,
+              address: stationName,
+              station: stationName,
+              buyers: data.map(item => ({
+                price: item.price || '価格応相談',
+                method: item.method || '未定',
+                occupation: item.occupation || '',
+                reason: item.reason || '',
+                timing: item.timing || '',
+                ng: item.ng || '特になし',
+                family: item.family || '',
+                age: item.age || ''
+              }))
+            });
+          }
+          // エリアデータの場合
+          else if (data[0].city) {
+            files.push({
+              name: `${data[0].city}の${data[0].type || '物件'}`,
+              address: `${data[0].pref || ''} ${data[0].city}`,
+              buyers: data.map(item => ({
+                price: item.price || '価格応相談',
+                method: item.method || '未定',
+                occupation: item.occupation || '',
+                reason: item.reason || '',
+                timing: item.timing || '',
+                ng: item.ng || '特になし',
+                family: item.family || '',
+                age: item.age || ''
+              }))
+            });
+          }
+          // その他の場合（既に正しい形式の可能性）
+          else {
+            files.push(...data);
+          }
+        } else if (typeof data === 'object') {
+          files.push(data);
+        }
       } catch (error) {
         console.error(`エラー: ${fullPath} の読み込みに失敗:`, error.message);
       }
