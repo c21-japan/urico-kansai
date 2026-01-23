@@ -1,0 +1,22 @@
+# 正規の検索エンジンクローラーを許可
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Baiduspider
+User-agent: YandexBot
+User-agent: facebookexternalhit
+Allow: /
+
+# それ以外の全てのボットを制限
+User-agent: *
+Disallow: /
+
+# クロール速度の制限
+Crawl-delay: 10
+
+# 機密情報へのアクセス禁止
+Disallow: /api/
+Disallow: /admin/
+Disallow: /.env
+Disallow: /private/
