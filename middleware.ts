@@ -1,6 +1,5 @@
 // Vercel Edge Functions用のミドルウェア
-import { next } from '@vercel/functions';
-import { ipAddress } from '@vercel/functions';
+import { ipAddress, next } from '@vercel/functions';
 
 // 悪質なクローラーのUser-Agentパターン
 const MALICIOUS_BOTS = [
