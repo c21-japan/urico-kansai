@@ -1,0 +1,11 @@
+.vercel
+
+# 自動生成ファイル
+out/
+jobs/
+src/generated/
+
+# ただし、ディレクトリ構造は保持
+!out/.gitkeep
+!jobs/.gitkeep
+!src/generated/.gitkeep
