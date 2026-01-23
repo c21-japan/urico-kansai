@@ -390,6 +390,14 @@
         }
         footer p { color: #ccc; margin-bottom: 10px; }
         footer .copyright { font-size: 12px; color: #888; }
+        footer .character-image {
+            max-width: 120px;
+            max-height: 120px;
+            width: auto;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 28px; }
@@ -410,7 +418,7 @@
     </div>
     <header>
         <a href="#" class="logo" aria-label="ホームへ戻る">
-            <img src="https://urico.jp/assets/img/logo.svg" alt="URICO ロゴ" />
+            <img src="./images/urico_logo.png" alt="URICO ロゴ" />
             URICO
         </a>
         <nav>
@@ -543,6 +551,7 @@
     </div>
 
     <footer>
+        <img src="./images/urico_face.png" alt="URICO キャラクター" class="character-image" />
         <p>関西最大級の不動産売却マッチングサービス</p>
         <p class="copyright">&copy; 2026 URICO All Rights Reserved.</p>
     </footer>
@@ -705,7 +714,7 @@ window.closeModal = function() {
 };
 
 window.contactBuyer = function(buyerId) {
-    alert('担当者から折り返しご連絡いたします。');
+    window.location.href = 'https://form.run/@urico-kansai';
 };
 
 async function loadExternalData() {
