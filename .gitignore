@@ -1,5 +1,8 @@
 .vercel
 
+# macOS
+.DS_Store
+
 # 自動生成ファイル
 out/
 jobs/
